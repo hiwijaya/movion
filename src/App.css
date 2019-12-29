@@ -20,3 +20,7 @@ body {
   color: #FFFFFF;
   background-color: #141414;
 }
+
+.content {
+  margin-left: 100px;
+}

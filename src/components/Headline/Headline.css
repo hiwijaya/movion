@@ -1,0 +1,17 @@
+.headline {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%;
+    height: 650px;
+}
+.headline .desc {
+    width: 500px;
+    background-color: #000000;
+}
+.headline .backdrop {
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}

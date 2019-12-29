@@ -15,7 +15,7 @@ export default class Menubar extends Component {
         this.state = {
             currentMenu: 'home'
         }
-        
+
     }
 
 
@@ -24,11 +24,11 @@ export default class Menubar extends Component {
             borderRight: '5px solid #FFE170'
         }
         return(
-            <Link>
-                <div class="menu" style={(selected) ? indicator : null}>
+            <div class="menu" style={(selected) ? indicator : null}>
+                <Link>
                     <img src={icon} alt="Home Menu"/>
-                </div>
-            </Link>
+                </Link>
+            </div>
         );
     }
 
