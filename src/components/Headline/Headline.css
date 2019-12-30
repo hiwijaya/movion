@@ -1,17 +1,48 @@
 .headline {
+    position: absolute;
+    left: 100px;
+    right: 0;
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
     width: 100%;
-    height: 650px;
+    height: 70%;
+    max-height: 700px;
 }
-.headline .desc {
+.headline span {
     width: 500px;
     background-color: #000000;
 }
 .headline .backdrop {
     width: 100%;
-    background-size: cover;
-    background-position: center;
     background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    /* background-size: 110% 110%;
+    animation: shrink 10s infinite alternate; */
+}
+@keyframes shrink {
+    0% {
+      background-size: 110% 110%;
+    }
+    100% {
+      background-size: 100% 100%;
+    }
+}
+.headline .desc {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    padding: 50px;
+    max-width: 600px;
+}
+.headline .desc .title {
+    font-size: 2.4em;
+}
+.headline .desc .info {
+    margin: 20px 0;
+}
+.headline .desc .info h5 {
+    color: #80868B;
+    margin-left: 20px;
 }

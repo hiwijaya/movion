@@ -1,0 +1,19 @@
+.rating {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    padding: 7px 2px;
+    border-radius: 4px;
+    background-color: #FFE170; 
+}
+.rating img {
+    width: 12px;
+    height: 12px;
+    margin-right: 2px;
+}
+.rating h6 {
+    color: #262626;
+    font-weight: 700;
+}

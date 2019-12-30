@@ -2,7 +2,6 @@
    v2.0 | 20110126
    License: none (public domain)
 */
-
 html,
 body,
 div,
@@ -134,7 +133,44 @@ table {
     border-spacing: 0;
 }
 
+
 /* custom */
+html {
+  	height: 100%;
+}
+
+body {
+	font-family: 'Roboto', sans-serif;
+	font-size: 1.0em;
+	font-weight: 400;
+	color: #FFFFFF;
+	background-color: #141414;
+}
+
+h1 {
+  	font-size: 2.4em;
+}
+h2 {
+  	font-size: 2.0em;
+}
+h3 {
+  	font-size: 1.6em;
+}
+h4 {
+  	font-size: 1.2em;
+}
+h5 {
+  	font-size: 1.0em;
+}
+h6 {
+  	font-size: 0.8em;
+}
+
+p {
+  	line-height: 1.6;
+}
+
 a {
+    color: #FFF;
     text-decoration: none;
 }
