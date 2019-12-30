@@ -1,6 +1,6 @@
 import React from 'react';
 import './Rating.css';
-import star from '../../images/icon/star-yellow.svg';
+import star from '../../images/icon/star.svg';
 
 
 function Rating({rate}) {

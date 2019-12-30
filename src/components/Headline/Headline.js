@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './Headline.css';
 import { Link } from 'react-router-dom';
 import backdrop from '../../images/backdrop2.jpg';
+import play from '../../images/icon/play.svg';
 import Rating from '../Rating';
 
 
@@ -9,7 +10,12 @@ export default class Headline extends Component {
 
 
     renderTrailerButton() {
-        
+        return(
+            <button type="button" class="trailer-button center">
+                <img src={play} alt="play"/>
+                <h5> Watch Trailer</h5>
+            </button>
+        );
     }
     
     render() {
@@ -36,6 +42,7 @@ export default class Headline extends Component {
                         Maleficent and her goddaughter Aurora begin to question the complex family ties that bind them as 
                         they are pulled in different directions by impending nuptials, unexpected allies, and dark new...
                     </p>
+                    {this.renderTrailerButton()}
                 </div>
             </div>
         );
