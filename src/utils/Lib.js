@@ -50,6 +50,10 @@ export function requestURL(endpoint, params) {
     return URL + endpoint + '?' + paramArr.join('&');
 }
 
+export function randomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
 export function now() {
     return moment().toDate();
 }

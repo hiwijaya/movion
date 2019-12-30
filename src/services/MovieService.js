@@ -24,6 +24,20 @@ export default class MovieService {
         }
     }
 
+    async getTrending(page, onSuccess){
+        const params = [
+            {
+                key: 'sort_by',
+                val: 'popularity.desc'
+            },
+            {
+                key: 'page',
+                val: page
+            },
+        ];
+        this.discover(params, onSuccess);
+    }
+
     async getInTheaters(onSuccess) {
         const params = [{
                 key: 'primary_release_date.gte',
