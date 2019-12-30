@@ -7,6 +7,10 @@ import Rating from '../Rating';
 
 export default class Headline extends Component {
 
+
+    renderTrailerButton() {
+        
+    }
     
     render() {
         const background = {

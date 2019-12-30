@@ -3,17 +3,14 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 40px;
-    padding: 7px 2px;
-    border-radius: 4px;
-    background-color: #FFE170; 
+    width: 50px;
 }
 .rating img {
-    width: 12px;
-    height: 12px;
-    margin-right: 2px;
+    width: 14px;
+    height: 14px;
+    margin-right: 5px;
 }
-.rating h6 {
-    color: #262626;
+.rating div {
+    color: #FFE170;
     font-weight: 700;
 }
