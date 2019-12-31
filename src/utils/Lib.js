@@ -139,8 +139,7 @@ export function filterData(rawData) {
             backdrop: getBackdropURL(data.backdrop_path),
             rate: data.vote_average,
             vote: data.vote_count,
-            genre: getGenre(data.genre_ids),
-            // link: ...
+            releaseYear: getYear(rawData.release_date),
         }
         filteredData.push(fd);
     }
@@ -158,6 +157,7 @@ export function filterMovie(rawData) {
         rate: rawData.vote_average,
         vote: rawData.vote_count,
         genres: rawData.genres,
+        shortGenre: getShortGenre(rawData.genres),
         release: rawData.release_date,
         releaseYear: getYear(rawData.release_date),
         productions: rawData.production_companies,
@@ -200,105 +200,21 @@ function getTopCast(casts) {
     return cast;
 }
 
-function getGenre(ids) {
-    if (ids === null || ids.length === 0) {
+function getShortGenre(genres) {
+    if (genres === null || genres.length === 0) {
         return '-';
     }
-    if (ids.length < 2) {
-        return getGenreById(ids[0]);
+    if (genres.length < 2) {
+        return genres[0].name;
     }
 
-    const genre1 = getGenreById(ids[0]);
-    const genre2 = getGenreById(ids[1]);
-
-    return genre1 + '/' + genre2;
+    return `${genres[0].name}/${genres[1].name}`;
 }
 
-function getGenreById(id) {
-    for (let g of GENRES) {
-        if (id === g.id) {
-            return g.name;
-        }
+export function getShortOverview(overview){
+    const words = overview.split(' ');
+    if(words.length > 31){
+        return words.splice(0, 30).join(' ') + '...';
     }
-    return '-';
+    return overview
 }
-
-
-// hardcoded
-export const GENRES = [{
-        id: 28,
-        name: 'Action'
-    },
-    {
-        id: 12,
-        name: 'Adventure'
-    },
-    {
-        id: 16,
-        name: 'Animation'
-    },
-    {
-        id: 35,
-        name: 'Comedy'
-    },
-    {
-        id: 80,
-        name: 'Crime'
-    },
-    {
-        id: 99,
-        name: 'Documentary'
-    },
-    {
-        id: 18,
-        name: 'Drama'
-    },
-    {
-        id: 10751,
-        name: 'Family'
-    },
-    {
-        id: 14,
-        name: 'Fantasy'
-    },
-    {
-        id: 36,
-        name: 'History'
-    },
-    {
-        id: 27,
-        name: 'Horror'
-    },
-    {
-        id: 10402,
-        name: 'Music'
-    },
-    {
-        id: 9648,
-        name: 'Mystery'
-    },
-    {
-        id: 10749,
-        name: 'Romance'
-    },
-    {
-        id: 878,
-        name: 'Science Fiction'
-    },
-    {
-        id: 10770,
-        name: 'TV Movie'
-    },
-    {
-        id: 53,
-        name: 'Thriller'
-    },
-    {
-        id: 10752,
-        name: 'War'
-    },
-    {
-        id: 37,
-        name: 'Western'
-    }
-];

@@ -1,10 +1,9 @@
-import React, {Component} from 'react';
+import React from 'react';
 import './Headline.css';
 import { Link } from 'react-router-dom';
-import backdrop from '../../images/backdrop2.jpg';
 import play from '../../images/icon/play.svg';
 import Rating from '../Rating';
-
+import * as Lib from '../../utils/Lib';
 
 
 function renderTrailerButton() {
@@ -32,14 +31,13 @@ function Headline({movie}) {
                 </Link>
                 <div class="info chorizontal">
                     <Rating rate={movie.rate}/>
-                    <h5>Adventure/Family</h5>
-                    <h5>2019</h5>
-                    <h5>1h 58m</h5>
-                    <h5>Cert. PG</h5>
+                    <h5>{`${movie.vote} reviews`}</h5>
+                    <h5>{movie.shortGenre}</h5>
+                    <h5>{movie.duration}</h5>
+                    <h5>{movie.releaseYear}</h5>
                 </div>
                 <p>
-                    Maleficent and her goddaughter Aurora begin to question the complex family ties that bind them as 
-                    they are pulled in different directions by impending nuptials, unexpected allies, and dark new...
+                    {Lib.getShortOverview(movie.overview)}
                 </p>
                 {renderTrailerButton()}
             </div>
@@ -52,8 +50,11 @@ Headline.defaultProps = {
         backdrop: '',
         title: '',
         rate: 0,
-        duration: '?',
-        cert: '?'
+        vote: '',
+        shortGenre: '',
+        releaseYear: '',
+        duration: '',
+        overview: ''
     },    
 }
 export default Headline;
