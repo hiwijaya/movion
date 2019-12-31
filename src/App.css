@@ -32,6 +32,30 @@
 .title-section {
 	display: flex;
 	flex-direction: row;
-	margin-top: 50px;
-	margin-left: 50px;
+	margin: 50px 0 20px 50px; 
 }
+
+
+
+/* scroll */
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-track {
+	width: 5px;
+	height: 2px;
+	background-color: transparent;
+}
+
+::-webkit-scrollbar,
+::-webkit-scrollbar {
+	width: 5px;
+	height: 2px;
+	background-color: #000;
+}
+
+::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-thumb {
+	width: 5px;
+	height: 2px;
+	background-color: #FFE170;
+}
+/* scroll */

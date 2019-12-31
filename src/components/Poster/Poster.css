@@ -1,7 +1,7 @@
 .poster {
-    margin: 50px;
-    width: 240px; 
-
+    width: 240px;
+    padding-right: 10px; 
+    scroll-snap-align: start;
 }
 .poster .image {
     width: 100%;

@@ -3,6 +3,7 @@ import Menubar from '../components/Menubar';
 import Headline from '../components/Headline';
 import MovieService from '../services/MovieService.js';
 import * as Lib from '../utils/Lib.js';
+import Gallery from '../components/Gallery';
 
 import Poster from '../components/Poster';
 
@@ -47,8 +48,7 @@ export default class Home extends Component {
                     <div class="title-section">
                         <h3>Trending Movies </h3>
                     </div>
-
-                    <Poster movie={this.state.headlineMovie || undefined}/>
+                    <Gallery movies={this.state.trendingMovies}/>
 
                 </div>
             </div>
