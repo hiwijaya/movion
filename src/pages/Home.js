@@ -4,6 +4,8 @@ import Headline from '../components/Headline';
 import MovieService from '../services/MovieService.js';
 import * as Lib from '../utils/Lib.js';
 
+import Poster from '../components/Poster';
+
 
 export default class Home extends Component {
 
@@ -45,6 +47,9 @@ export default class Home extends Component {
                     <div class="title-section">
                         <h3>Trending Movies </h3>
                     </div>
+
+                    <Poster movie={this.state.headlineMovie || undefined}/>
+
                 </div>
             </div>
         );

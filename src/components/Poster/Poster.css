@@ -1,0 +1,8 @@
+.poster {
+    margin: 50px;
+    width: 240px; 
+
+}
+.poster .image-poster {
+    width: 100%;
+}
