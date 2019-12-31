@@ -28,3 +28,10 @@
 .content {
   	margin-left: 100px;
 }
+
+.title-section {
+	display: flex;
+	flex-direction: row;
+	margin-top: 50px;
+	margin-left: 50px;
+}

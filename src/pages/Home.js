@@ -20,16 +20,18 @@ export default class Home extends Component {
     }
 
     componentDidMount() {
-        this.movieService.getTrending(1, (movies) => {
-            const headline = movies[Lib.randomNumber(0, movies.length)];
+        this.movieService.getTrendingMovies((movies) => {
+
+            const headline = movies[Lib.randomNumber(0, movies.length-1)];
+
             this.movieService.getMovie(headline.id, (movie) => {
                 this.setState({
                     headlineMovie: movie,
                     trendingMovies: movies
                 });
             });
-        });
 
+        });
 
     }
 
@@ -39,6 +41,10 @@ export default class Home extends Component {
                 <Menubar/>
                 <div class="content">
                     <Headline movie={this.state.headlineMovie || undefined}/>
+
+                    <div class="title-section">
+                        <h3>Trending Movies </h3>
+                    </div>
                 </div>
             </div>
         );

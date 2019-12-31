@@ -3,6 +3,7 @@ import * as Lib from '../utils/Lib';
 
 export default class MovieService {
 
+
     async discover(params, onSuccess) {
         try {
             const response = await fetch(Lib.requestURL('/discover/movie', params), Lib.requestHeader());
@@ -24,18 +25,25 @@ export default class MovieService {
         }
     }
 
-    async getTrending(page, onSuccess){
-        const params = [
-            {
-                key: 'sort_by',
-                val: 'popularity.desc'
-            },
-            {
-                key: 'page',
-                val: page
-            },
-        ];
-        this.discover(params, onSuccess);
+    async getTrendingMovies(onSuccess) {
+        try {
+            const response = await fetch(Lib.requestURL('/trending/movie/week', null), Lib.requestHeader());
+            const responseJson = await response.json();
+
+            if (!response.ok) {
+                this.handleError();
+                return;
+            }
+
+            let movies = responseJson.results;
+            movies = Lib.filterData(movies);
+
+            onSuccess(movies);
+
+        } catch (error) {
+            console.log(error);
+            this.handleError();
+        }
     }
 
     async getInTheaters(onSuccess) {
