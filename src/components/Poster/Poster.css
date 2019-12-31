@@ -3,6 +3,16 @@
     width: 240px; 
 
 }
-.poster .image-poster {
+.poster .image {
     width: 100%;
+}
+.poster .title {
+    margin: 10px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.poster .year {
+    color: #80868B;
+    margin-left: 20px;
 }
