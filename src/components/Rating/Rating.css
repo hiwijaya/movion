@@ -1,9 +1,8 @@
 .rating {
-    display: flex;
+    display: inline-flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 50px;
 }
 .rating img {
     width: 14px;
