@@ -4,7 +4,17 @@ import {Link} from 'react-router-dom';
 import Rating from '../Rating/Rating';
 
 
-function Poster({movie}) {
+function Poster({movie, more}) {
+
+    if(more !== null){
+        return(
+            <Link to={more}>
+                <div class="poster center explore">
+                    <h5>See All</h5>
+                </div>
+            </Link>
+        );
+    }
 
     return(
         <Link to="/">
@@ -24,6 +34,7 @@ Poster.defaultProps = {
         poster: '',
         title: '',
         releaseYear: ''
-    }
+    },
+    more: null
 }
 export default Poster;

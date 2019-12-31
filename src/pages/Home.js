@@ -48,7 +48,7 @@ export default class Home extends Component {
                     <div class="title-section">
                         <h3>Trending Movies </h3>
                     </div>
-                    <Gallery movies={this.state.trendingMovies}/>
+                    <Gallery movies={this.state.trendingMovies} more={'/movies'}/>
 
                 </div>
             </div>

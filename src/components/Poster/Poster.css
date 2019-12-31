@@ -4,7 +4,8 @@
     scroll-snap-align: start;
 }
 .poster .image {
-    width: 100%;
+    width: 240px;
+    height: 360px;
 }
 .poster .title {
     margin: 10px 0;
@@ -15,4 +16,10 @@
 .poster .year {
     color: #80868B;
     margin-left: 20px;
+}
+.explore {
+    width: 240px;
+    height: 360px;
+    color: #FFE170;
+    background-color: #262626;
 }
