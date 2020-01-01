@@ -51,22 +51,8 @@ export default class MovieService {
         }
     }
 
-    
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    async getInTheaters(onSuccess) {
+    async getShowing(page, onSuccess) {
         const params = [{
                 key: 'primary_release_date.gte',
                 val: Lib.formatDate(Lib.oneMonthBefore())
@@ -81,7 +67,7 @@ export default class MovieService {
             },
             {
                 key: 'page',
-                val: 1
+                val: page
             },
         ];
         this.discover(params, onSuccess);

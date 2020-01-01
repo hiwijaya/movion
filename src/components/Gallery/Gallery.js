@@ -3,15 +3,7 @@ import './Gallery.css';
 import Poster from '../Poster';
 
 
-function Gallery({movies, more}){
-
-    if(more !== null){
-        let m = {
-            id: '00',
-            more: more
-        }
-        movies.push(m);
-    }
+function Gallery({movies}){
 
     return(
         <div class="gallery">
@@ -27,7 +19,6 @@ function Gallery({movies, more}){
     );
 }
 Gallery.defaultProps = {
-    movies: [],
-    more: null
+    movies: []
 }
 export default Gallery

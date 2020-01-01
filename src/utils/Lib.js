@@ -238,3 +238,13 @@ export function getShortOverview(overview){
     }
     return overview
 }
+
+export function more(data, url){
+    let m = {
+        id: '00',
+        more: url
+    }
+    data.push(m);
+    
+    return data;
+}
