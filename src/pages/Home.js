@@ -4,8 +4,7 @@ import Headline from '../components/Headline';
 import MovieService from '../services/MovieService.js';
 import * as Lib from '../utils/Lib.js';
 import Gallery from '../components/Gallery';
-
-import Poster from '../components/Poster';
+import Footer from '../components/Footer';
 
 
 export default class Home extends Component {
@@ -50,6 +49,8 @@ export default class Home extends Component {
                     </div>
                     <Gallery movies={this.state.trendingMovies} more={'/movies'}/>
 
+
+                    <Footer/>
                 </div>
             </div>
         );

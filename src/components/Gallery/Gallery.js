@@ -1,7 +1,6 @@
 import React from 'react';
 import './Gallery.css';
 import Poster from '../Poster';
-import logo from '../../images/logo.png'
 
 
 function Gallery({movies, more}){
