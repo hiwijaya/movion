@@ -1,0 +1,15 @@
+.cast {
+    width: 240px;
+    padding-right: 10px;
+    scroll-snap-align: start;
+}
+.cast img {
+    width: 240px;
+    height: 360px;
+}
+.cast .name {
+    margin: 10px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

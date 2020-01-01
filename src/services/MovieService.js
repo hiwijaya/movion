@@ -3,6 +3,32 @@ import * as Lib from '../utils/Lib';
 
 export default class MovieService {
 
+    // media: movie/person
+    async getTrending(media, onSuccess) {
+        try {
+            const response = await fetch(Lib.requestURL(`/trending/${media}/week`, null), Lib.requestHeader());
+            const responseJson = await response.json();
+
+            if (!response.ok) {
+                this.handleError();
+                return;
+            }
+
+            let data = responseJson.results;
+            if (media === 'movie') {
+                let movies = Lib.filterMovies(data);
+                onSuccess(movies);
+            } else {
+                let persons = Lib.filterPersons(data);
+                onSuccess(persons)
+            }
+
+        } catch (error) {
+            console.log(error);
+            this.handleError();
+        }
+    }
+
 
     async discover(params, onSuccess) {
         try {
@@ -15,7 +41,7 @@ export default class MovieService {
             }
 
             let movies = responseJson.results;
-            movies = Lib.filterData(movies);
+            movies = Lib.filterMovies(movies);
 
             onSuccess(movies);
 
@@ -25,26 +51,20 @@ export default class MovieService {
         }
     }
 
-    async getTrendingMovies(onSuccess) {
-        try {
-            const response = await fetch(Lib.requestURL('/trending/movie/week', null), Lib.requestHeader());
-            const responseJson = await response.json();
+    
 
-            if (!response.ok) {
-                this.handleError();
-                return;
-            }
 
-            let movies = responseJson.results;
-            movies = Lib.filterData(movies);
 
-            onSuccess(movies);
 
-        } catch (error) {
-            console.log(error);
-            this.handleError();
-        }
-    }
+
+
+
+
+
+
+
+
+
 
     async getInTheaters(onSuccess) {
         const params = [{
@@ -136,7 +156,7 @@ export default class MovieService {
             }
 
             let movies = responseJson.results;
-            movies = Lib.filterData(movies);
+            movies = Lib.filterMovies(movies);
 
             onSuccess(movies);
 

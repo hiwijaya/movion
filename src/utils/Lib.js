@@ -8,6 +8,7 @@ const BACKDROP_URL = 'https://image.tmdb.org/t/p/w1280';
 const POSTER_URL = 'https://image.tmdb.org/t/p/w342';
 const PROFILE_URL = 'https://image.tmdb.org/t/p/w185';
 
+
 export function requestHeader() {
     return {
         method: 'GET',
@@ -123,7 +124,7 @@ export function getPosterURL(path) {
 }
 
 // for /discover results
-export function filterData(rawData) {
+export function filterMovies(rawData) {
     let filteredData = [];
     for (let data of rawData) {
 
@@ -172,6 +173,25 @@ export function filterMovie(rawData) {
     return movie;
 }
 
+export function filterPersons(rawData){
+    let filteredData = [];
+    for (let data of rawData) {
+        
+        if (data.profile_path === null) {
+            continue;
+        }
+
+        let fd = {
+            id: data.id,
+            name: data.name,
+            photo: PROFILE_URL + data.profile_path
+        }
+        filteredData.push(fd);
+    }
+    return filteredData;
+}
+
+
 function getDirector(crew) {
     for (let c of crew) {
         if (c.job === 'Director') {
@@ -192,7 +212,7 @@ function getTopCast(casts) {
             id: casts[i].id,
             name: casts[i].name,
             character: casts[i].character,
-            picture: PROFILE_URL + casts[i].profile_path
+            photo: PROFILE_URL + casts[i].profile_path
         }
         cast.push(c);
     }

@@ -6,6 +6,8 @@ import * as Lib from '../utils/Lib.js';
 import Gallery from '../components/Gallery';
 import Footer from '../components/Footer';
 
+import Cast from '../components/Cast/Cast';
+
 
 export default class Home extends Component {
 
@@ -14,7 +16,8 @@ export default class Home extends Component {
 
         this.state = {
             headlineMovie: null,
-            trendingMovies: []
+            trendingMovies: [],
+            trendingPersons: [],
         }
 
         this.movieService = new MovieService();
@@ -22,7 +25,7 @@ export default class Home extends Component {
     }
 
     componentDidMount() {
-        this.movieService.getTrendingMovies((movies) => {
+        this.movieService.getTrending('movie', (movies) => {
 
             const headline = movies[Lib.randomNumber(0, movies.length-1)];
 
@@ -33,6 +36,12 @@ export default class Home extends Component {
                 });
             });
 
+        });
+
+        this.movieService.getTrending('person', (persons) => {
+            this.setState({
+                trendingPersons: persons
+            });
         });
 
     }
@@ -47,7 +56,9 @@ export default class Home extends Component {
                     <div class="title-section">
                         <h3>Trending Movies </h3>
                     </div>
-                    <Gallery movies={this.state.trendingMovies} more={'/movies'}/>
+                    <Gallery movies={this.state.trendingMovies}/>
+
+                    <Cast person={this.state.trendingPersons[3] || undefined}/>
 
 
                     <Footer/>
