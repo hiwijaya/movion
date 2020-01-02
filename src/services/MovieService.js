@@ -109,7 +109,7 @@ export default class MovieService {
             const url = `/movie/${id}`
             const params = [{
                 key: 'append_to_response',
-                val: 'videos,credits'
+                val: 'external_ids,credits,videos,images'
             }]
             const response = await fetch(Lib.requestURL(url, params), Lib.requestHeader());
             const responseJson = await response.json();

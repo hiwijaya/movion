@@ -44,6 +44,64 @@
 }
 
 
+/*  /movie  */
+.tab {
+	width: 100%;
+	height: 100px;
+}
+.tab div {
+	margin: 10px 20px;
+	padding: 10px 0;
+	font-size: 1.2em;
+	color: #80868B;
+	cursor: pointer;
+}
+.tab div:hover {
+	color: #FFF;
+}
+
+.movie-info {
+	display: flex;
+	flex-direction: row;
+	margin: 20px 50px; 
+}
+.movie-info .poster {
+	width: 320px;
+}
+.movie-info .detail {
+	margin-left: 50px;
+}
+.movie-info .detail .title {
+	font-size: 1.5em;
+	font-weight: 700;
+	margin-bottom: 20px;
+}
+.movie-info .detail ul {
+	margin: 40px 0;
+}
+.movie-info .detail li {
+	display: flex;
+	flex-direction: row;
+	margin-bottom: 20px;
+}
+.movie-info .detail li span {
+	width: 150px;
+}
+.movie-info .detail .reviews {
+	margin-left: 10px;
+	color: #80868B;
+}
+
+/*  /movie  */
+
+
+
+
+
+
+
+
+
 /* scroll */
 ::-webkit-scrollbar-track,
 ::-webkit-scrollbar-track {

@@ -17,7 +17,7 @@ function Poster({movie, more}) {
     }
 
     return(
-        <Link to="/">
+        <Link to={`/movie/${movie.id}`}>
             <div class="poster">
                 <img class="image" src={movie.poster} alt="Poster"/>
                 <h5 class="title">{movie.title}</h5>

@@ -1,0 +1,11 @@
+.social {
+    display: inline-flex;
+	flex-direction: row;
+    justify-content: center;
+}
+.social img {
+	width: 24px;
+    height: 24px;
+    margin-right: 20px;
+    cursor: pointer;
+}

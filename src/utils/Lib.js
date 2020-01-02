@@ -70,6 +70,13 @@ export function formatDate(date) {
     return '';
 }
 
+export function formatFullDate(date){
+    if (date !== null) {
+        return moment(date).format('D MMMM YYYY');
+    }
+    return '';
+}
+
 // 123m --> 2h 3m
 export function formatMinutes(minutes) {
     if (minutes === null) {
@@ -135,7 +142,7 @@ export function filterMovies(rawData) {
 
         const fd = {
             id: data.id,
-            title: data.original_title,
+            title: data.title,
             poster: getPosterURL(data.poster_path),
             backdrop: getBackdropURL(data.backdrop_path),
             rate: data.vote_average,
@@ -149,9 +156,13 @@ export function filterMovies(rawData) {
 
 // for /movie result
 export function filterMovie(rawData) {
+
+    let ids = rawData.external_ids;
+    ids.homepage = rawData.homepage;
+
     let movie = {
         id: rawData.id,
-        title: rawData.original_title,
+        title: rawData.title,
         overview: rawData.overview,
         poster: getPosterURL(rawData.poster_path),
         backdrop: getBackdropURL(rawData.backdrop_path),
@@ -161,13 +172,14 @@ export function filterMovie(rawData) {
         shortGenre: getShortGenre(rawData.genres),
         release: rawData.release_date,
         releaseYear: getYear(rawData.release_date),
-        productions: rawData.production_companies,
+        productions: productionList(rawData.production_companies),
         budget: handleNull(rawData.budget, '?', formatCurrency(rawData.budget)),
         revenue: handleNull(rawData.revenue, '?', formatCurrency(rawData.revenue)),
         duration: formatMinutes(rawData.runtime), // in minutes
         director: getDirector(rawData.credits.crew),
         cast: getTopCast(rawData.credits.cast), // {id, name, character, picture}
-        trailer: handleNull(rawData.videos.results, null, rawData.videos.results[0].key)
+        trailer: handleNull(rawData.videos.results, null, rawData.videos.results[0].key),
+        social: ids
     }
 
     return movie;
@@ -239,7 +251,7 @@ export function getShortOverview(overview){
     return overview
 }
 
-export function more(data, url){
+export function more(data, url) {
     let m = {
         id: '00',
         more: url
@@ -247,4 +259,13 @@ export function more(data, url){
     data.push(m);
     
     return data;
+}
+
+export function productionList(productions) {
+    let companies = [];
+    productions.map((p) => {
+        companies.push(p.name);
+    });
+
+    return companies.join(', ');
 }
