@@ -10,3 +10,7 @@
 .social svg:hover {
     stroke: #FFF;
 }
+.social svg.imdb:hover {
+    fill: #FFF;
+    stroke: none;
+}

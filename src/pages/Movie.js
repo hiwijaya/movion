@@ -32,8 +32,9 @@ export default class Movie extends Component {
             budget: '',
             revenue: '',
             productions: '',
-            cast: [],
             social: [],
+            cast: [],
+            
             trailer: null,
             recommendationsMovies: [],
         }
@@ -80,11 +81,11 @@ export default class Movie extends Component {
         }
 
         return(
-            <span>
+            <div>
                 <Link to={`/movie?genre=${genres[0].id}`} className="link">{genres[0].name}</Link>
                 <span>&nbsp;/&nbsp;</span>
                 <Link to={`/movie?genre=${genres[1].id}`} className="link">{genres[1].name}</Link>
-            </span>
+            </div>
         );
     }
 
