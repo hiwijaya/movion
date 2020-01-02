@@ -3,9 +3,10 @@
 	flex-direction: row;
     justify-content: center;
 }
-.social img {
-	width: 24px;
-    height: 24px;
+.social svg {
     margin-right: 20px;
     cursor: pointer;
+}
+.social svg:hover {
+    stroke: #FFF;
 }
