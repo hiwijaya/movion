@@ -22,7 +22,7 @@ function Poster({movie, more}) {
                 <img class="image" src={movie.poster} alt="Poster"/>
                 <h5 class="title">{movie.title}</h5>
                 <div class="chorizontal">
-                    <Rating rate="7.8"/>
+                    <Rating rate={movie.rate}/>
                     <h5 class="year">{movie.releaseYear}</h5>
                 </div>
             </div>

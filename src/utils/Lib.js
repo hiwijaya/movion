@@ -140,7 +140,7 @@ export function filterMovies(rawData) {
             backdrop: getBackdropURL(data.backdrop_path),
             rate: data.vote_average,
             vote: data.vote_count,
-            releaseYear: getYear(rawData.release_date),
+            releaseYear: getYear(data.release_date),
         }
         filteredData.push(fd);
     }
