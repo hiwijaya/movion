@@ -19,13 +19,13 @@ export default class Menubar extends Component {
     }
 
 
-    renderMenu(icon, selected){
+    renderMenu(url, icon, selected){
         const indicator = {
             borderRight: '5px solid #FFE170'
         }
         return(
             <div class="menu" style={(selected) ? indicator : null}>
-                <Link>
+                <Link to={url}>
                     <img src={icon} alt="Home Menu"/>
                 </Link>
             </div>
@@ -35,10 +35,10 @@ export default class Menubar extends Component {
     render() {
         return(
             <div class="menubar">
-                {this.renderMenu(home, true)}
-                {this.renderMenu(film, false)}
-                {this.renderMenu(people, false)}
-                {this.renderMenu(search, false)}
+                {this.renderMenu('/', home, true)}
+                {this.renderMenu('/movie', film, false)}
+                {this.renderMenu('/person', people, false)}
+                {this.renderMenu('/', search, false)}
             </div>
         );
     }

@@ -36,6 +36,7 @@ export default class Movie extends Component {
 
             backdrops: [],
             posters: [],
+            videos: [],
 
             trailer: null,
             similarMovies: [],
@@ -65,6 +66,7 @@ export default class Movie extends Component {
                 cast: movie.cast,
                 backdrops: movie.backdrops,
                 posters: movie.posters,
+                videos: movie.videos,
                 trailer: movie.trailer,
             });
         });
@@ -174,6 +176,20 @@ export default class Movie extends Component {
         );
     }
 
+    renderVideos() {
+        return(
+            <div class="videos">
+                {
+                    this.state.videos.map((v, i) => (
+                        <div class="thumbnail">
+                            <img src={Lib.getVideoThumbnail(v.key)} alt="videos"/>
+                        </div>
+                    ))
+                }
+            </div>
+        );
+    }
+
     render() {
         return (
             <div>
@@ -185,6 +201,7 @@ export default class Movie extends Component {
 
                     {(this.state.selectedTab === 0) && this.renderOverview()}
                     {(this.state.selectedTab === 1) && this.renderPhotos()}
+                    {(this.state.selectedTab === 2) && this.renderVideos()}
 
                     <div class="title-section">
                         <h3>Similar Movies</h3>

@@ -126,6 +126,10 @@ export function getPosterURL(path) {
     return POSTER_URL + path;
 }
 
+export function getVideoThumbnail(videoId) {
+    return `https://img.youtube.com/vi/${videoId}/sddefault.jpg`;
+}
+
 // for /discover results
 export function filterMovies(rawData) {
     let filteredData = [];
@@ -178,6 +182,7 @@ export function filterMovie(rawData) {
         social: ids,
         backdrops: rawData.images.backdrops,
         posters: rawData.images.posters,
+        videos: rawData.videos.results
     }
 
     return movie;

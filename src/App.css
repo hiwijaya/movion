@@ -62,8 +62,7 @@
 
 .overview {
 	width: 100%;
-	margin-top: 20px;
-	margin-bottom: 20px;
+	margin-top: 20px 0;
 }
 .movie-info {
 	display: flex;
@@ -100,8 +99,7 @@
 
 .photos {
 	width: 100%;
-	margin-top: 20px;
-	margin-bottom: 20px;
+	margin-top: 20px 0;
 }
 .photos .title-section {
 	margin-top: 0;
@@ -138,6 +136,25 @@
 	.photos .backdrops img {
 		width: 33.333333%;
 	}
+}
+
+
+
+.videos {
+	display: flex;
+	flex-wrap: wrap;
+
+	margin: 20px 50px;
+	
+}
+.videos .thumbnail {
+	width: 25%;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	box-sizing: border-box;
+}
+.videos .thumbnail img {
+	width: 100%;
 }
 
 
