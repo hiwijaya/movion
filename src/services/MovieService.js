@@ -129,7 +129,7 @@ export default class MovieService {
         }
     }
 
-    async getRecommendations(id, onSuccess) {
+    async getSimilarMovies(id, onSuccess) {
         try {
             const url = `/movie/${id}/recommendations`;
 

@@ -216,7 +216,12 @@ function getDirector(crew) {
 function getTopCast(casts) {
     let cast = [];
     for (let i = 0; i < casts.length; i++) {
-        if (i > 4) {
+
+        if(casts[i].profile_path === null){
+            continue;
+        }
+
+        if (cast.length >= 15) {
             break;
         }
 

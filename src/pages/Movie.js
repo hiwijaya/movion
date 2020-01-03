@@ -10,16 +10,15 @@ import MovieService from '../services/MovieService.js';
 import * as Lib from '../utils/Lib.js';
 
 
-
 export default class Movie extends Component {
 
     constructor(props) {
         super(props);
 
         this.state = {
-            movie: null,
             selectedTab: 0,
-
+            
+            movie: null,
             poster: '',
             title: '',
             release: '',
@@ -34,9 +33,9 @@ export default class Movie extends Component {
             productions: '',
             social: [],
             cast: [],
-            
             trailer: null,
-            recommendationsMovies: [],
+
+            similarMovies: [],
         }
 
         this.movieId = props.match.params.id;
@@ -65,9 +64,9 @@ export default class Movie extends Component {
             });
         });
 
-        this.movieService.getRecommendations(this.movieId, (movies) => {
+        this.movieService.getSimilarMovies(this.movieId, (movies) => {
             this.setState({
-                recommendationsMovies: movies.slice(0, 7)
+                similarMovies: movies
             });
         });
     }
@@ -106,7 +105,7 @@ export default class Movie extends Component {
 
     renderOverview() {
         return(
-            <div>
+            <div class="overview">
                 <div class="movie-info">
                     <img class="poster" src={this.state.poster} alt={this.state.title}/>
                     <div class="detail">
@@ -114,8 +113,8 @@ export default class Movie extends Component {
                         <p>{this.state.overview}</p>
                         <ul>
                             <li><span>Director</span><Link to={'/person/director'} className="link">{this.state.director}</Link></li>
-                            <li><span>Released</span>{Lib.formatFullDate(this.state.release)}</li>
-                            <li><span>Genres</span>{this.renderGenres(this.state.genres)}</li>
+                            <li><span>Release</span>{Lib.formatFullDate(this.state.release)}</li>
+                            <li><span>Genre</span>{this.renderGenres(this.state.genres)}</li>
                             <li><span>Duration</span>{this.state.duration}</li>
                             <li><span>Budget</span>{this.state.budget}</li>
                             <li><span>Revenue</span>{this.state.revenue}</li>
@@ -125,12 +124,13 @@ export default class Movie extends Component {
                             </li>
                             <li><span>Productions</span>{this.state.productions}</li>
                         </ul>
-
                         <Social ids={this.state.social}/>
-
-
                     </div>
                 </div>
+                <div class="title-section">
+                    <h3>Cast</h3>
+                </div>
+                <Gallery cast={this.state.cast}/>
             </div>
         );
     }
@@ -145,6 +145,11 @@ export default class Movie extends Component {
                     {this.renderTab(this.state.selectedTab)}
 
                     {(this.state.selectedTab===0) && this.renderOverview()}
+
+                    <div class="title-section">
+                        <h3>Similar Movies</h3>
+                    </div>
+                    <Gallery movies={this.state.similarMovies}/>
 
 
                     <Footer/>

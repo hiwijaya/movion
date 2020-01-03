@@ -10,6 +10,7 @@ export default function Cast({person}) {
             <div class="cast">
                 <img src={person.photo} alt="Profile"/>
                 <h5 class="name">{person.name}</h5>
+                <h5 class="character">{person.character}</h5>
             </div>
         </Link>
     );

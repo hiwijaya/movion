@@ -1,17 +1,22 @@
 import React from 'react';
 import './Gallery.css';
 import Poster from '../Poster';
+import Cast from '../Cast';
 
 
-function Gallery({movies}){
+function Gallery({movies, cast}){
 
     return(
         <div class="gallery">
             <span class="pad"/>
             {
                 movies.map((movie, i) => (
-                    // <img key={i} src={logo} alt="test"/>
                     <Poster key={movie.id} movie={movie} more={movie.more}/>
+                ))
+            }
+            {
+                cast.map((person, i) => (
+                    <Cast key={person.id} person={person}/>
                 ))
             }
             <span class="pad"/>
@@ -19,6 +24,7 @@ function Gallery({movies}){
     );
 }
 Gallery.defaultProps = {
-    movies: []
+    movies: [],
+    cast: []
 }
 export default Gallery

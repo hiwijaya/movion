@@ -1,15 +1,18 @@
 .cast {
-    width: 240px;
+    width: 200px;
     padding-right: 10px;
     scroll-snap-align: start;
 }
 .cast img {
-    width: 240px;
-    height: 360px;
+    width: 200px;
+    height: 300px;
 }
 .cast .name {
     margin: 10px 0;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+}
+.cast .character {
+    color: #80868B;
 }
