@@ -60,11 +60,15 @@
 	color: #FFF;
 }
 
-
+.overview {
+	width: 100%;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
 .movie-info {
 	display: flex;
 	flex-direction: row;
-	margin: 20px 50px; 
+	margin: 0px 50px; 
 }
 .movie-info .poster {
 	width: 320px;
@@ -92,6 +96,50 @@
 	margin-left: 10px;
 	color: #80868B;
 }
+
+
+.photos {
+	width: 100%;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.photos .title-section {
+	margin-top: 0;
+}
+.photos .title-section h6 {
+	color: #80868B;
+}
+.photos .backdrops, .photos .posters {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0 50px;
+	margin-bottom: 50px;
+}
+.photos .backdrops img, .photos .posters img {
+	width: 20%;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	box-sizing: border-box;
+}
+.photos .posters img {
+	width: 16.666666%;
+}
+@media only screen and (max-width: 1500px){
+	.photos .backdrops img {
+		width: 20%;
+	}
+}
+@media only screen and (max-width: 1024px){
+	.photos .backdrops img {
+		width: 25%;
+	}
+}
+@media only screen and (max-width: 640px){
+	.photos .backdrops img {
+		width: 33.333333%;
+	}
+}
+
 
 /*  /movie  */
 

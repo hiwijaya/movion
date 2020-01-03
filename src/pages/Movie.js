@@ -33,8 +33,11 @@ export default class Movie extends Component {
             productions: '',
             social: [],
             cast: [],
-            trailer: null,
 
+            backdrops: [],
+            posters: [],
+
+            trailer: null,
             similarMovies: [],
         }
 
@@ -60,7 +63,9 @@ export default class Movie extends Component {
                 productions: movie.productions,
                 social: movie.social,
                 cast: movie.cast,
-                trailer: movie.trailer
+                backdrops: movie.backdrops,
+                posters: movie.posters,
+                trailer: movie.trailer,
             });
         });
 
@@ -69,6 +74,10 @@ export default class Movie extends Component {
                 similarMovies: movies
             });
         });
+    }
+
+    selectTab(i){
+        this.setState({selectedTab: i});
     }
 
     renderGenres(genres){
@@ -96,9 +105,9 @@ export default class Movie extends Component {
         }
         return(
             <div class="tab center chorizontal">
-                <div style={selectedTab === 0 ? active : null}>OVERVIEW</div>
-                <div style={selectedTab === 1 ? active : null}>PHOTOS</div>
-                <div style={selectedTab === 2 ? active : null}>VIDEOS</div>
+                <div style={selectedTab === 0 ? active : null} onClick={() => this.selectTab(0)}>OVERVIEW</div>
+                <div style={selectedTab === 1 ? active : null} onClick={() => this.selectTab(1)}>PHOTOS</div>
+                <div style={selectedTab === 2 ? active : null} onClick={() => this.selectTab(2)}>VIDEOS</div>
             </div>
         );
     }
@@ -135,6 +144,36 @@ export default class Movie extends Component {
         );
     }
 
+    renderPhotos() {
+        return(
+            <div class="photos">
+                <div class="title-section">
+                    <h3>Backdrops</h3>
+                    <h6>{this.state.backdrops.length} images</h6>
+                </div>
+                <div class="backdrops">
+                    {
+                        this.state.backdrops.map((b, i) => (
+                            <img src={Lib.getBackdropURL(b.file_path)} alt="backdrops"/>
+                        ))
+                    }
+                </div>
+
+                <div class="title-section">
+                    <h3>Posters</h3>
+                    <h6>{this.state.posters.length} images</h6>
+                </div>
+                <div class="posters">
+                    {
+                        this.state.posters.map((p, i) => (
+                            <img src={Lib.getPosterURL(p.file_path)} alt="posters"/>
+                        ))
+                    }
+                </div>
+            </div>
+        );
+    }
+
     render() {
         return (
             <div>
@@ -144,7 +183,8 @@ export default class Movie extends Component {
 
                     {this.renderTab(this.state.selectedTab)}
 
-                    {(this.state.selectedTab===0) && this.renderOverview()}
+                    {(this.state.selectedTab === 0) && this.renderOverview()}
+                    {(this.state.selectedTab === 1) && this.renderPhotos()}
 
                     <div class="title-section">
                         <h3>Similar Movies</h3>

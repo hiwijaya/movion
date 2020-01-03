@@ -37,10 +37,6 @@ export function requestURL(endpoint, params) {
         key: 'include_video',
         val: false
     });
-    params.push({
-        key: 'language',
-        val: 'en-US'
-    });
 
     let paramArr = [];
     for (let param of params) {
@@ -179,7 +175,9 @@ export function filterMovie(rawData) {
         director: getDirector(rawData.credits.crew),
         cast: getTopCast(rawData.credits.cast), // {id, name, character, picture}
         trailer: handleNull(rawData.videos.results, null, rawData.videos.results[0].key),
-        social: ids
+        social: ids,
+        backdrops: rawData.images.backdrops,
+        posters: rawData.images.posters,
     }
 
     return movie;
