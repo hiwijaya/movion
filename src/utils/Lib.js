@@ -271,9 +271,7 @@ export function more(data, url) {
 
 export function productionList(productions) {
     let companies = [];
-    productions.map((p) => {
-        companies.push(p.name);
-    });
+    productions.map((p) => companies.push(p.name) );
 
     return companies.join(', ');
 }
