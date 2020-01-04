@@ -6,6 +6,7 @@ import Rating from '../components/Rating';
 import Social from '../components/Social';
 import Gallery from '../components/Gallery';
 import Footer from '../components/Footer';
+import PlayCircle from '../images/icon/play-circle.svg';
 import MovieService from '../services/MovieService.js';
 import * as Lib from '../utils/Lib.js';
 
@@ -181,8 +182,15 @@ export default class Movie extends Component {
             <div class="videos">
                 {
                     this.state.videos.map((v, i) => (
-                        <div class="thumbnail">
-                            <img src={Lib.getVideoThumbnail(v.key)} alt="videos"/>
+                        <div class="video">
+                            <div class="thumbnail">
+                                <img src={Lib.getVideoThumbnail(v.key)} alt="videos"/>
+                                <img class="play" src={PlayCircle} alt="play"/>
+                            </div>
+                            <div class="title">
+                                <h5>{v.name}</h5>
+                                <h6>{v.type}</h6>
+                            </div>
                         </div>
                     ))
                 }

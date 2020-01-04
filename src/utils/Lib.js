@@ -127,7 +127,7 @@ export function getPosterURL(path) {
 }
 
 export function getVideoThumbnail(videoId) {
-    return `https://img.youtube.com/vi/${videoId}/sddefault.jpg`;
+    return `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
 }
 
 // for /discover results

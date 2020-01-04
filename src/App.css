@@ -143,21 +143,37 @@
 .videos {
 	display: flex;
 	flex-wrap: wrap;
-
 	margin: 20px 50px;
-	
 }
-.videos .thumbnail {
+.videos .video {
 	width: 25%;
-	padding-right: 10px;
-	padding-bottom: 10px;
+	padding-right: 20px;
+	padding-bottom: 40px;
 	box-sizing: border-box;
 }
-.videos .thumbnail img {
+.videos .video .thumbnail {
+	position: relative;
+}
+.videos .video .thumbnail img {
 	width: 100%;
 }
-
-
+.videos .video .thumbnail .play {
+	position: absolute;
+	top: 0; 
+	bottom: 0;
+	left: 0; 
+	right: 0;
+	margin: auto;
+	width: 64px;
+	height: 64px;
+	z-index: 1;
+}
+.videos .video .title h5 {
+	margin: 10px 0;
+}
+.videos .video .title h6 {
+	color: #80868B;
+}
 /*  /movie  */
 
 
