@@ -13,6 +13,7 @@
 .menubar .menu {
     width: 100px;
     margin-bottom: 75px;
+    cursor: pointer;
 }
 .menubar .menu img {
     width: 32px;

@@ -2,10 +2,12 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import Menubar from '../components/Menubar';
 import Headline from '../components/Headline';
-import MovieService from '../services/MovieService.js';
-import * as Lib from '../utils/Lib.js';
 import Gallery from '../components/Gallery';
 import Footer from '../components/Footer';
+import MovieService from '../services/MovieService.js';
+import * as Lib from '../utils/Lib.js';
+
+import Discover from '../components/Discover';
 
 
 export default class Home extends Component {
@@ -20,6 +22,7 @@ export default class Home extends Component {
         }
 
         this.movieService = new MovieService();
+        this.discover = null;
 
     }
 
@@ -48,7 +51,8 @@ export default class Home extends Component {
     render() {
         return(
             <div>
-                <Menubar/>
+                <Menubar onSearchPress={() => this.discover.toggle()}/>
+                <Discover ref={(ref) =>{this.discover = ref}}/>
                 <div class="content">
                     <Headline movie={this.state.headlineMovie || undefined}/>
 

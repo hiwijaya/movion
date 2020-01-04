@@ -26,10 +26,14 @@ export default class Menubar extends Component {
         return(
             <div class="menu" style={(selected) ? indicator : null}>
                 <Link to={url}>
-                    <img src={icon} alt="Home Menu"/>
+                    <img src={icon} alt="Menu"/>
                 </Link>
             </div>
         );
+    }
+    
+    handleSearch() {
+        this.props.onSearchPress();
     }
 
     render() {
@@ -38,8 +42,14 @@ export default class Menubar extends Component {
                 {this.renderMenu('/', home, true)}
                 {this.renderMenu('/movie', film, false)}
                 {this.renderMenu('/person', people, false)}
-                {this.renderMenu('/', search, false)}
+                <div class="menu" style={(false) ? {borderRight: '5px solid #FFE170'} : null}
+                    role="button" onClick={() => this.handleSearch()}>
+                    <img src={search} alt="Search"/>
+                </div>
             </div>
         );
     }
+}
+Menubar.defaultProps = {
+    onSearchPress: () => {}
 }
