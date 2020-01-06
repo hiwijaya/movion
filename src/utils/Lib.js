@@ -178,7 +178,7 @@ export function filterMovie(rawData) {
         duration: formatMinutes(rawData.runtime), // in minutes
         director: getDirector(rawData.credits.crew),
         cast: getTopCast(rawData.credits.cast), // {id, name, character, picture}
-        trailer: handleNull(rawData.videos.results, null, rawData.videos.results[0].key),
+        // trailer: handleNull(rawData.videos.results, null, '12345'),
         social: ids,
         backdrops: rawData.images.backdrops,
         posters: rawData.images.posters,

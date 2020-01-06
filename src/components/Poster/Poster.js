@@ -19,7 +19,9 @@ function Poster({movie, more}) {
     return(
         <Link to={`/movie/${movie.id}`}>
             <div class="poster">
-                <img class="image" src={movie.poster} alt="Poster"/>
+                <div class="image">
+                    <img src={movie.poster} alt="Poster"/>
+                </div>
                 <h5 class="title">{movie.title}</h5>
                 <div class="chorizontal">
                     <Rating rate={movie.rate}/>

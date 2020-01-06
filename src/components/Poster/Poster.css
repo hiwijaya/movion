@@ -4,8 +4,15 @@
     scroll-snap-align: start;
 }
 .poster .image {
+    overflow: hidden;
+}
+.poster .image img {
     width: 240px;
     height: 360px;
+    transition: transform 0.5s ease;
+}
+.poster .image:hover img {
+    transform: scale(1.1);
 }
 .poster .title {
     margin: 10px 0;

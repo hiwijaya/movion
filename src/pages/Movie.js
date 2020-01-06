@@ -39,7 +39,7 @@ export default class Movie extends Component {
             posters: [],
             videos: [],
 
-            trailer: null,
+            // trailer: null,
             similarMovies: [],
         }
 
@@ -68,7 +68,7 @@ export default class Movie extends Component {
                 backdrops: movie.backdrops,
                 posters: movie.posters,
                 videos: movie.videos,
-                trailer: movie.trailer,
+                // trailer: movie.trailer,
             });
         });
 
