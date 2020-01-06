@@ -12,13 +12,15 @@ export default class Discover extends Component {
             keyword: ''
         }
 
+        
+        this.discoverElement = null;
         this.toggleOff = this.toggleOff.bind(this);
     }
 
     toggle() {
-        const isShow = this.state.show;
-        if(isShow){
-            this.toggleOff();
+        const showing = this.state.show;
+        if(showing){
+            this.toggleOff(this);
         }
         else{
             this.setState({
@@ -30,12 +32,16 @@ export default class Discover extends Component {
         
     }
 
-    toggleOff(){
-        this.setState({
-            show: false
-        }, () => {
-            document.removeEventListener('click', this.toggleOff);
-        })
+    toggleOff(e){
+        if(!this.discoverElement.contains(e.target)){
+            this.setState({
+                show: false,
+                keyword: ''
+            }, () => {
+                document.removeEventListener('click', this.toggleOff);
+            })
+        }
+        
     }
 
     handleChange(e) {
@@ -49,9 +55,9 @@ export default class Discover extends Component {
     }
 
     render() {
-        const display = {display: this.state.show ? 'flex' : 'none'};
+        const toggleClass = (this.state.show) ? 'discover show' : 'discover hide';
         return(
-            <div class="discover cvertical" style={display}>
+            <div className={toggleClass} ref={(element) => {this.discoverElement = element}}>
                 <input type="text" placeholder="Search for movie or person..." 
                     value={this.state.keyword}
                     onChange={(event) => this.handleChange(event)} 

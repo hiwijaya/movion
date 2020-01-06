@@ -1,17 +1,28 @@
 .discover {
+    display: flex;
+    align-items: center;
     position: fixed;
     top: 0;
     right: 0;
     left: 100px;
-    height: 80px;
+    height: 0;
+    overflow: hidden;
     background-color: #202124;
     z-index: 2;
+    transition: height 0.1s linear;
 }
 .discover input {
+    width: 100%;
     margin: 0 50px;
     font-size: 1.0em;
     color: #FFF;
     border: none;
     outline: none;
     background: none;
+}
+.show {
+    height: 80px;
+}
+.hide {
+    height: 0;
 }
