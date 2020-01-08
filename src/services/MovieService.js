@@ -106,7 +106,7 @@ export default class MovieService {
     // TODO: set onError callback handle
     async getMovie(id, onSuccess) {
         try {
-            const url = `/movie/${id}`
+            const url = `/movie/${id}`;
             const params = [{
                 key: 'append_to_response',
                 val: 'external_ids,credits,videos,images'
@@ -149,6 +149,14 @@ export default class MovieService {
         } catch (error) {
             console.log(error);
             this.handleError();
+        }
+    }
+
+    async getPerson(id, onSuccess) {
+        try{
+
+        } catch(error) {
+
         }
     }
 

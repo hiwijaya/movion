@@ -5,6 +5,7 @@ import ScrollTop from './components/ScrollTop';
 import Home from './pages/Home';
 import Movie from './pages/Movie';
 import Movies from './pages/Movies';
+import Person from './pages/Person';
 
 
 export default function App() {
@@ -14,6 +15,7 @@ export default function App() {
             <Switch>
                 <Route path="/movie/:id" component={Movie} />
                 <Route path="/movie" component={Movies} />
+                <Route path="/person/:id" component={Person} />
                 <Route path="/" component={Home} exact />
             </Switch>
         </BrowserRouter>
