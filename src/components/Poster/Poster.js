@@ -1,6 +1,5 @@
 import React from 'react';
 import './Poster.css';
-import {Link} from 'react-router-dom';
 import Rating from '../Rating/Rating';
 
 
@@ -8,16 +7,16 @@ function Poster({movie, more}) {
 
     if(more !== null){
         return(
-            <Link to={more}>
+            <a href={more}>
                 <div class="poster center explore">
                     <h5>See All</h5>
                 </div>
-            </Link>
+            </a>
         );
     }
 
     return(
-        <Link to={`/movie/${movie.id}`}>
+        <a href={`/movie/${movie.id}`}>
             <div class="poster">
                 <div class="image">
                     <img src={movie.poster} alt="Poster"/>
@@ -28,7 +27,7 @@ function Poster({movie, more}) {
                     <h5 class="year">{movie.releaseYear}</h5>
                 </div>
             </div>
-        </Link>
+        </a>
     );
 }
 Poster.defaultProps = {
