@@ -126,6 +126,10 @@ export function getPosterURL(path) {
     return POSTER_URL + path;
 }
 
+export function getProfileURL(path) {
+    return PROFILE_URL + path;
+}
+
 export function getVideoThumbnail(videoId) {
     return `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
 }
@@ -188,7 +192,7 @@ export function filterMovie(rawData) {
     return movie;
 }
 
-export function filterPersons(rawData){
+export function filterPersons(rawData) {
     let filteredData = [];
     for (let data of rawData) {
         
@@ -204,6 +208,25 @@ export function filterPersons(rawData){
         filteredData.push(fd);
     }
     return filteredData;
+}
+
+export function filterPerson(rawData) {
+    let ids = rawData.external_ids;
+    ids.homepage = rawData.homepage;
+
+    let person = {
+        id: rawData.id,
+        name: rawData.name,
+        photo: getProfileURL(rawData.profile_path),
+        biography: rawData.biography,
+        birthday: rawData.birthday,
+        placeBirth: rawData.place_of_birth,
+        social: ids,
+        photos: rawData.images.profiles,
+        // movie_credits filter
+    }
+
+    return person;
 }
 
 

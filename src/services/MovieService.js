@@ -154,6 +154,22 @@ export default class MovieService {
 
     async getPerson(id, onSuccess) {
         try{
+            const url = `/person/${id}`;
+            const params = [{
+                key: 'append_to_response',
+                val: 'external_ids,movie_credits,images'
+            }]
+            const response = await fetch(Lib.requestURL(url, params), Lib.requestHeader());
+            const responseJson = await response.json();
+
+            if (!response.ok) {
+                this.handleError();
+                return;
+            }
+
+             const person = Lib.filterPerson(responseJson);
+
+             onSuccess(person);
 
         } catch(error) {
 
