@@ -1,5 +1,4 @@
 .poster {
-    width: 240px;
     padding-right: 10px; 
     scroll-snap-align: start;
 }
@@ -7,8 +6,7 @@
     overflow: hidden;
 }
 .poster .image img {
-    width: 240px;
-    height: 360px;
+    width: 100%;
     transition: transform 0.5s ease;
 }
 .poster .image:hover img {

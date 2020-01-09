@@ -6,7 +6,7 @@ const API_KEY = '3acc7bbfaa9ab936046d3d1e717296df';
 const URL = 'https://api.themoviedb.org/3';
 const BACKDROP_URL = 'https://image.tmdb.org/t/p/w1280';
 const POSTER_URL = 'https://image.tmdb.org/t/p/w342';
-const PROFILE_URL = 'https://image.tmdb.org/t/p/w185';
+const PROFILE_URL = 'https://image.tmdb.org/t/p/h632';
 
 
 export function requestHeader() {
@@ -174,7 +174,7 @@ export function filterMovie(rawData) {
         vote: rawData.vote_count,
         genres: rawData.genres,
         shortGenre: getShortGenre(rawData.genres),
-        release: rawData.release_date,
+        release: formatFullDate(rawData.release_date),
         releaseYear: getYear(rawData.release_date),
         productions: productionList(rawData.production_companies),
         budget: handleNull(rawData.budget, '?', formatCurrency(rawData.budget)),
@@ -219,11 +219,12 @@ export function filterPerson(rawData) {
         name: rawData.name,
         photo: getProfileURL(rawData.profile_path),
         biography: rawData.biography,
-        birthday: rawData.birthday,
+        knownFor: rawData.known_for_department,
+        birthday: `${formatFullDate(rawData.birthday)} (age ${getAge(rawData.birthday)})`,
         placeBirth: rawData.place_of_birth,
         social: ids,
         photos: rawData.images.profiles,
-        // movie_credits filter
+        movies: filterMovies(rawData.movie_credits.cast)    // 
     }
 
     return person;
@@ -297,4 +298,8 @@ export function productionList(productions) {
     productions.map((p) => companies.push(p.name) );
 
     return companies.join(', ');
+}
+
+function getAge(birthdate) {
+    return moment().year() - moment(birthdate).year();
 }

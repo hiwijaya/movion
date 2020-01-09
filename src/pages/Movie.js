@@ -125,7 +125,7 @@ export default class Movie extends Component {
                         <p>{this.state.overview}</p>
                         <ul>
                             <li><span>Director</span><Link to={'/person/director'} className="link">{this.state.director}</Link></li>
-                            <li><span>Release</span>{Lib.formatFullDate(this.state.release)}</li>
+                            <li><span>Release</span>{this.state.release}</li>
                             <li><span>Genre</span>{this.renderGenres(this.state.genres)}</li>
                             <li><span>Duration</span>{this.state.duration}</li>
                             <li><span>Budget</span>{this.state.budget}</li>

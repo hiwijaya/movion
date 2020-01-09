@@ -27,7 +27,8 @@
 }
 
 .content {
-  	margin-left: 100px;
+	  padding-left: 100px;
+	  overflow: hidden;
 }
 
 .title-section {
@@ -176,6 +177,49 @@
 	color: #80868B;
 }
 /*  /movie  */
+
+
+/* /person */
+.profile {
+	display: flex;
+	flex-direction: row;
+	margin: 50px;
+}
+.profile .photo {
+	width: 320px;
+	flex-shrink: 0;		/* prevent div shrinking inside flexbox (even has set width) */
+}
+.profile .photo img {
+	width: 100%;
+}
+.profile .overview {
+	margin: 0 50px;
+}
+.profile .overview h2 {
+	margin-bottom: 20px;
+}
+.profile .overview p {
+	white-space: pre-line;		/* related with \n */
+	margin-bottom: 50px;
+}
+.profile .overview ul {
+	margin: 40px 0;
+}
+.profile .overview li {
+	display: flex;
+	flex-direction: row;
+	margin-bottom: 20px;
+}
+.profile .overview li span {
+	width: 150px;
+}
+.movies {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0 50px;
+	margin-bottom: 50px;
+}
+/* /person */
 
 
 
