@@ -224,7 +224,8 @@ export function filterPerson(rawData) {
         placeBirth: rawData.place_of_birth,
         social: ids,
         photos: rawData.images.profiles,
-        movies: filterMovies(rawData.movie_credits.cast)    // 
+        movies: filterMovies(rawData.movie_credits.cast),
+        photos: rawData.images.profiles,
     }
 
     return person;

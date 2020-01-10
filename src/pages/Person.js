@@ -23,7 +23,8 @@ export default class Person extends Component {
             placeBirth: '',
             social: [],
 
-            movies: []
+            movies: [],
+            photos: [],
         }
 
         this.personId = props.match.params.id;
@@ -42,6 +43,7 @@ export default class Person extends Component {
                 placeBirth: person.placeBirth,
                 social: person.social,
                 movies: person.movies,
+                photos: person.photos,
             });
         });
     }
@@ -75,6 +77,24 @@ export default class Person extends Component {
             </div>
         );
     }
+
+    renderPhotos() {
+        return(
+            <div class="photos">
+                <div class="title-section">
+                    <h3>Photos</h3>
+                    <h6>{this.state.posters.length} images</h6>
+                </div>
+                <div class="posters">
+                    {
+                        this.state.photos.map((p, i) => (
+                            <img src={Lib.getPosterURL(p.file_path)} alt="posters"/>
+                        ))
+                    }
+                </div>
+            </div>
+        );
+    }
     
     render() {
         return (
@@ -98,8 +118,7 @@ export default class Person extends Component {
                     </div>
 
                     {this.renderTab(this.state.selectedTab)}
-
-                    {this.renderMovies(this.state.movies)}
+                    {(this.state.selectedTab === 0) && this.renderMovies(this.state.movies)}
 
                 </div>
             </div>
