@@ -7,7 +7,9 @@ export default function Cast({person}) {
     return(
         <a href={`/person/${person.id}`}>
             <div class="cast">
-                <img src={person.photo} alt="Profile"/>
+                <div class="image">
+                    <img src={person.photo} alt="Profile"/>
+                </div>
                 <h5 class="name">{person.name}</h5>
                 <h5 class="character">{person.character}</h5>
             </div>
