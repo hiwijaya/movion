@@ -3,16 +3,12 @@ import './Poster.css';
 import Rating from '../Rating/Rating';
 
 
-function Poster({movie, width, more}) {
-
-    const posterWidth = {
-        width
-    }
+function Poster({movie, inGallery, more}) {
 
     if(more !== null){
         return(
             <a href={more}>
-                <div class="poster center explore" style={posterWidth}>
+                <div class="explore center">
                     <h5>See All</h5>
                 </div>
             </a>
@@ -20,8 +16,8 @@ function Poster({movie, width, more}) {
     }
 
     return(
-        <a href={`/movie/${movie.id}`}>
-            <div class="poster" style={posterWidth}>
+        <a href={`/movie/${movie.id}`} className={(inGallery) ? 'poster' : 'poster poster-grid'}>
+            <div>
                 <div class="image">
                     <img src={movie.poster} alt="Poster"/>
                 </div>
@@ -40,7 +36,7 @@ Poster.defaultProps = {
         title: '',
         releaseYear: ''
     },
-    width: '240px',     // TODO: consider to change with dynamic class instead
-    more: null
+    inGallery: true,
+    more: null,
 }
 export default Poster;

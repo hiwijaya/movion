@@ -1,12 +1,26 @@
 .poster {
-    padding-right: 10px; 
+    width: 240px;
+    padding-right: 10px;
+    box-sizing: border-box;
     scroll-snap-align: start;
+    overflow: hidden;
+    flex-shrink: 0;
 }
 .poster .image {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-top: 150%;    /* TIPS: This is your aspect ratio */
     overflow: hidden;
 }
 .poster .image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
     width: 100%;
+    height: 100%;
     transition: transform 0.5s ease;
 }
 .poster .image:hover img {
@@ -22,9 +36,34 @@
     color: #80868B;
     margin-left: 20px;
 }
+
 .explore {
     width: 240px;
     height: 360px;
     color: #FFE170;
     background-color: #262626;
+    scroll-snap-align: start;
+}
+
+.poster-grid {
+    width: 16.666666%;
+    margin-bottom: 40px;
+}
+
+
+
+@media only screen and (max-width: 1500px){
+	.poster-grid {
+		width: 20%;
+	}
+}
+@media only screen and (max-width: 1024px){
+	.poster-grid {
+		width: 25%;
+	}
+}
+@media only screen and (max-width: 640px){
+	.poster-grid {
+		width: 33.333333%;
+	}
 }

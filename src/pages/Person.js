@@ -69,7 +69,7 @@ export default class Person extends Component {
             <div class="movies">
                 {
                     movies.map((movie, i) => (
-                        <Poster key={movie.id} movie={movie}/>
+                        <Poster key={movie.id} movie={movie} inGallery={false}/>
                     ))
                 }
             </div>
