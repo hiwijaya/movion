@@ -57,7 +57,7 @@ export default function Social({ids}){
 
     return(
         <div class="social">
-            {(ids.homepage !== '') && <a href={ids.homepage} target="_blank"> <Homepage/> </a>}
+            {(ids.homepage !== null) && <a href={ids.homepage} target="_blank"> <Homepage/> </a>}
             {(ids.facebook_id !== null) && <a href={`https://www.facebook.com/${ids.facebook_id}`} target="_blank"> <Facebook/> </a>}
             {(ids.instagram_id !== null) && <a href={`https://instagram.com/${ids.instagram_id}`} target="_blank"> <Intagram/> </a>}
             {(ids.twitter_id !== null) && <a href={`https://twitter.com/${ids.twitter_id}`} target="_blank"> <Twitter/> </a>}
@@ -67,7 +67,7 @@ export default function Social({ids}){
 }
 Social.defaultProps = {
     ids: {
-        homepage: '',
+        homepage: null,
         facebook_id: null,
         instagram_id: null,
         twitter_id: null,

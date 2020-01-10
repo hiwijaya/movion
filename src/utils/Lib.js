@@ -162,7 +162,7 @@ export function filterMovies(rawData) {
 export function filterMovie(rawData) {
 
     let ids = rawData.external_ids;
-    ids.homepage = rawData.homepage;
+    ids.homepage = rawData.homepage || null ;
 
     let movie = {
         id: rawData.id,
