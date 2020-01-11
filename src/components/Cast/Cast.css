@@ -1,13 +1,26 @@
 .cast {
     width: 200px;
     padding-right: 10px;
+    box-sizing: border-box;
     scroll-snap-align: start;
+    overflow: hidden;
+    flex-shrink: 0;
 }
 .cast .image {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-top: 150%;    /* TIPS: This is your aspect ratio */
     overflow: hidden;
 }
 .cast .image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
     width: 100%;
+    height: 100%;
     transition: transform 0.5s ease;
 }
 .cast .image:hover img {
