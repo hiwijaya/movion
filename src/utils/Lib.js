@@ -223,9 +223,9 @@ export function filterPerson(rawData) {
         birthday: `${formatFullDate(rawData.birthday)} (age ${getAge(rawData.birthday)})`,
         placeBirth: rawData.place_of_birth,
         social: ids,
-        photos: rawData.images.profiles,
         movies: filterMovies(rawData.movie_credits.cast),
         photos: rawData.images.profiles,
+        credits: rawData.movie_credits.cast,
     }
 
     return person;

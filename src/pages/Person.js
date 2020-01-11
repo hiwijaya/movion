@@ -5,6 +5,7 @@ import Social from '../components/Social';
 import Footer from '../components/Footer';
 import MovieService from '../services/MovieService';
 import * as Lib from '../utils/Lib.js';
+import Cast from '../components/Cast/Cast';
 
 
 export default class Person extends Component {
@@ -25,6 +26,7 @@ export default class Person extends Component {
 
             movies: [],
             photos: [],
+            credits: [],
         }
 
         this.personId = props.match.params.id;
@@ -44,6 +46,7 @@ export default class Person extends Component {
                 social: person.social,
                 movies: person.movies,
                 photos: person.photos,
+                credits: person.credits,
             });
         });
     }
@@ -83,16 +86,34 @@ export default class Person extends Component {
             <div class="photos">
                 <div class="title-section">
                     <h3>Photos</h3>
-                    <h6>{this.state.posters.length} images</h6>
+                    <h6>{this.state.photos.length} images</h6>
                 </div>
                 <div class="posters">
                     {
                         this.state.photos.map((p, i) => (
-                            <img src={Lib.getPosterURL(p.file_path)} alt="posters"/>
+                            <img key={i} src={Lib.getPosterURL(p.file_path)} alt="posters"/>
                         ))
                     }
                 </div>
             </div>
+        );
+    }
+
+    renderCredits(credits) {
+        return(
+            <ul class="credits">
+                {
+                    credits.map((cast, i) => (
+                        <li key={cast.id}>
+                            <a href={`/movie/${cast.id}`} class="chorizontal">
+                                <div class="year">{Lib.getYear(cast.release_date)}</div>
+                                <div>{cast.title}</div>
+                                <div class="character">&nbsp;{`as ${cast.character}`}</div>
+                            </a>
+                        </li>
+                    ))
+                }
+            </ul>
         );
     }
     
@@ -103,7 +124,7 @@ export default class Person extends Component {
                 <div class="content">
                     <div class="profile">
                         <div class="photo">
-                            <img src={this.state.photo}/>
+                            <img src={this.state.photo} alt="Photos"/>
                         </div>
                         <div class="overview">
                             <h2>{this.state.name}</h2>
@@ -119,7 +140,10 @@ export default class Person extends Component {
 
                     {this.renderTab(this.state.selectedTab)}
                     {(this.state.selectedTab === 0) && this.renderMovies(this.state.movies)}
+                    {(this.state.selectedTab === 1) && this.renderPhotos()}
+                    {(this.state.selectedTab === 2) && this.renderCredits(this.state.credits)}
 
+                    <Footer/>
                 </div>
             </div>
         )

@@ -230,6 +230,21 @@
 	margin: 0 50px;
 	margin-bottom: 50px;
 }
+
+.credits {
+	margin: 0 50px;
+}
+.credits li {
+	padding: 20px;
+	margin-bottom: 5px;
+	background-color: #202124;
+}
+.credits li .year {
+	margin-right: 50px;
+}
+.credits li .character {
+	color: #80868B;
+}
 /* /person */
 
 
