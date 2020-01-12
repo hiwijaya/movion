@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
+import Discover from '../components/Discover';
 import Menubar from '../components/Menubar';
 import Headline from '../components/Headline';
 import Rating from '../components/Rating';
 import Social from '../components/Social';
 import Gallery from '../components/Gallery';
 import Footer from '../components/Footer';
+import Preview from '../components/Preview';
 import PlayCircle from '../images/icon/play-circle.svg';
 import MovieService from '../services/MovieService.js';
 import * as Lib from '../utils/Lib.js';
@@ -45,6 +47,8 @@ export default class Movie extends Component {
 
         this.movieId = props.match.params.id;
         this.movieService = new MovieService();
+        this.discover = null;
+        this.preview = null;
     }
 
     componentDidMount() {
@@ -169,7 +173,8 @@ export default class Movie extends Component {
                 <div class="posters">
                     {
                         this.state.posters.map((p, i) => (
-                            <img src={Lib.getPosterURL(p.file_path)} alt="posters"/>
+                            <img src={Lib.getPosterURL(p.file_path)} role="button" alt="posters"
+                                onClick={() => this.preview.show(Lib.getPosterURL(p.file_path))}/>
                         ))
                     }
                 </div>
@@ -201,7 +206,9 @@ export default class Movie extends Component {
     render() {
         return (
             <div>
-                <Menubar/>
+                <Menubar onSearchPress={() => this.discover.toggle()}/>
+                <Discover ref={(ref) =>{this.discover = ref}}/>
+                <Preview ref={(ref) =>{this.preview = ref}}/>
                 <div class="content">
                     <Headline movie={this.state.movie || undefined}/>
 
