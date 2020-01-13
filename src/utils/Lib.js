@@ -130,9 +130,14 @@ export function getProfileURL(path) {
     return PROFILE_URL + path;
 }
 
+export function getYoutubeURL(key) {
+    return`https://www.youtube.com/embed/${key}?autoplay=1&enablejsapi=1&version=3`;
+}
+
 export function getVideoThumbnail(videoId) {
     return `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
 }
+
 
 // for /discover results
 export function filterMovies(rawData) {
@@ -234,7 +239,7 @@ export function filterPerson(rawData) {
 function getTrailer(videos) {
     for (let v of videos) {
         if(v.type === 'Trailer' && v.site === 'YouTube'){
-            return `https://www.youtube.com/embed/${v.key}?autoplay=1&enablejsapi=1&version=3`
+            return getYoutubeURL(v.key);
         }
     }
     return '';

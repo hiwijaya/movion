@@ -161,7 +161,7 @@ export default class Movie extends Component {
                 <div class="backdrops">
                     {
                         this.state.backdrops.map((b, i) => (
-                            <img src={Lib.getBackdropURL(b.file_path)} role="button" alt="backdrops"
+                            <img key={i} src={Lib.getBackdropURL(b.file_path)} role="button" alt="backdrops"
                                 onClick={() => this.preview.show(Lib.getBackdropURL(b.file_path))}/>
                         ))
                     }
@@ -174,7 +174,7 @@ export default class Movie extends Component {
                 <div class="posters">
                     {
                         this.state.posters.map((p, i) => (
-                            <img src={Lib.getPosterURL(p.file_path)} role="button" alt="posters"
+                            <img key={i} src={Lib.getPosterURL(p.file_path)} role="button" alt="posters"
                                 onClick={() => this.preview.show(Lib.getPosterURL(p.file_path))}/>
                         ))
                     }
@@ -188,7 +188,7 @@ export default class Movie extends Component {
             <div class="videos">
                 {
                     this.state.videos.map((v, i) => (
-                        <div class="video">
+                        <div key={i} class="video" role="button" onClick={() => this.preview.show(Lib.getYoutubeURL(v.key))}>
                             <div class="thumbnail">
                                 <img src={Lib.getVideoThumbnail(v.key)} alt="videos"/>
                                 <img class="play" src={PlayCircle} alt="play"/>

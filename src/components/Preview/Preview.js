@@ -38,7 +38,7 @@ export default class Preview extends Component {
             return <h3>Content not available.</h3>;
         }
         else if(item.startsWith('https://www.youtube.com/')){
-            return <iframe id="youtubeiframe" width="100%" height="100%" src={item}
+            return <iframe id="youtubeiframe" width="100%" height="100%" src={item} allowfullscreen="allowfullscreen"
                         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"/>
         }
         else {
