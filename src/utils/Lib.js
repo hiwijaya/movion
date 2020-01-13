@@ -5,7 +5,7 @@ const API_KEY = '3acc7bbfaa9ab936046d3d1e717296df';
 
 const URL = 'https://api.themoviedb.org/3';
 const BACKDROP_URL = 'https://image.tmdb.org/t/p/w1280';
-const POSTER_URL = 'https://image.tmdb.org/t/p/w342';
+const POSTER_URL = 'https://image.tmdb.org/t/p/w500';
 const PROFILE_URL = 'https://image.tmdb.org/t/p/h632';
 
 
@@ -182,7 +182,7 @@ export function filterMovie(rawData) {
         duration: formatMinutes(rawData.runtime), // in minutes
         director: getDirector(rawData.credits.crew),
         cast: getTopCast(rawData.credits.cast), // {id, name, character, picture}
-        // trailer: handleNull(rawData.videos.results, null, '12345'),
+        trailer: getTrailer(rawData.videos.results),
         social: ids,
         backdrops: rawData.images.backdrops,
         posters: rawData.images.posters,
@@ -229,6 +229,15 @@ export function filterPerson(rawData) {
     }
 
     return person;
+}
+
+function getTrailer(videos) {
+    for (let v of videos) {
+        if(v.type === 'Trailer' && v.site === 'YouTube'){
+            return `https://www.youtube.com/embed/${v.key}?autoplay=1&enablejsapi=1&version=3`
+        }
+    }
+    return '';
 }
 
 

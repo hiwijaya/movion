@@ -20,6 +20,9 @@
     justify-content: center;
     width: 100%;
     height: 100%;
+    padding: 50px;
+    padding-top: 0;
+    box-sizing: border-box;
 }
 .preview .item img {
     align-self: flex-start; /* It is stretching because "align-self" default value is "stretch" */

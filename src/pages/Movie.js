@@ -41,7 +41,7 @@ export default class Movie extends Component {
             posters: [],
             videos: [],
 
-            // trailer: null,
+            trailer: null,
             similarMovies: [],
         }
 
@@ -72,7 +72,7 @@ export default class Movie extends Component {
                 backdrops: movie.backdrops,
                 posters: movie.posters,
                 videos: movie.videos,
-                // trailer: movie.trailer,
+                trailer: movie.trailer,
             });
         });
 
@@ -161,7 +161,8 @@ export default class Movie extends Component {
                 <div class="backdrops">
                     {
                         this.state.backdrops.map((b, i) => (
-                            <img src={Lib.getBackdropURL(b.file_path)} alt="backdrops"/>
+                            <img src={Lib.getBackdropURL(b.file_path)} role="button" alt="backdrops"
+                                onClick={() => this.preview.show(Lib.getBackdropURL(b.file_path))}/>
                         ))
                     }
                 </div>
@@ -207,10 +208,11 @@ export default class Movie extends Component {
         return (
             <div>
                 <Menubar onSearchPress={() => this.discover.toggle()}/>
-                <Discover ref={(ref) =>{this.discover = ref}}/>
-                <Preview ref={(ref) =>{this.preview = ref}}/>
+                <Discover ref={(ref) => {this.discover = ref}}/>
+                <Preview ref={(ref) => {this.preview = ref}}/>
                 <div class="content">
-                    <Headline movie={this.state.movie || undefined}/>
+                    <Headline movie={this.state.movie || undefined} 
+                        onTrailerPress={() => this.preview.show(this.state.trailer)}/>
 
                     {this.renderTab(this.state.selectedTab)}
 

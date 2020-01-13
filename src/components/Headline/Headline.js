@@ -6,16 +6,16 @@ import Rating from '../Rating';
 import * as Lib from '../../utils/Lib';
 
 
-function renderTrailerButton() {
+function renderTrailerButton(onTrailerPress) {
     return(
-        <button type="button" class="trailer-button center">
+        <button type="button" class="trailer-button center" onClick={() => onTrailerPress()}>
             <img src={play} alt="play"/>
             <h5> Watch Trailer</h5>
         </button>
     );
 }
 
-function Headline({movie}) {
+function Headline({movie, onTrailerPress}) {
 
     const background = {
         backgroundImage: `linear-gradient(to right, #000, transparent 50%, transparent), url(${movie.backdrop})`
@@ -39,7 +39,7 @@ function Headline({movie}) {
                 <p>
                     {Lib.getShortOverview(movie.overview)}
                 </p>
-                {renderTrailerButton()}
+                {renderTrailerButton(onTrailerPress)}
             </div>
         </div>
     );
@@ -55,6 +55,7 @@ Headline.defaultProps = {
         releaseYear: '',
         duration: '',
         overview: ''
-    },    
+    },
+    onTrailerPress: () => {} 
 }
 export default Headline;
