@@ -106,7 +106,7 @@ export default class Person extends Component {
                     credits.map((cast, i) => (
                         <li key={cast.id}>
                             <a href={`/movie/${cast.id}`} class="chorizontal">
-                                <div class="year">{Lib.getYear(cast.release_date)}</div>
+                                <div class="year">{Lib.getYear(cast.release_date) || '-'}</div>
                                 <div>{cast.title}</div>
                                 <div class="character">&nbsp;{`as ${cast.character}`}</div>
                             </a>

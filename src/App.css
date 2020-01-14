@@ -92,6 +92,7 @@
 }
 .movie-info .detail li span {
 	width: 150px;
+	flex-shrink: 0;
 }
 .movie-info .detail .reviews {
 	margin-left: 10px;
@@ -244,7 +245,7 @@
 	background-color: #202124;
 }
 .credits li .year {
-	margin-right: 50px;
+	width: 100px;
 }
 .credits li .character {
 	color: #80868B;

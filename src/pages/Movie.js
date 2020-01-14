@@ -138,7 +138,7 @@ export default class Movie extends Component {
                                 <Rating rate={this.state.rate}/> 
                                 <div class="reviews">{` ${this.state.vote} reviews`}</div>
                             </li>
-                            <li><span>Productions</span>{this.state.productions}</li>
+                            <li><span>Productions</span><p>{this.state.productions}</p></li>
                         </ul>
                         <Social ids={this.state.social}/>
                     </div>

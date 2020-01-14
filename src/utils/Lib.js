@@ -322,7 +322,10 @@ function getAge(birthdate) {
 }
 
 function compareCredits(a, b){
-    if(getYear(a.release_date) > getYear(b.release_date)){
+    let yearA = getYear(a.release_date) || 5000;
+    let yearB = getYear(b.release_date) || 5000;
+
+    if(yearA > yearB){
         return -1;
     }
     return 1;
