@@ -184,6 +184,9 @@
 }
 .videos .video .title h5 {
 	margin: 10px 0;
+	overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 .videos .video .title h6 {
 	color: #80868B;
