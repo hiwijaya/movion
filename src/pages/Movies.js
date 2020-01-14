@@ -15,10 +15,9 @@ export default class Movies extends Component {
 
         this.state = {
             showingMovies: [],
-            trendingMovies: [],
+            indonesianMovies: [],   // add dynamic localization
             popularMovies: [],
-            rateMovies: [],
-            upcomingMovies: []
+            upcomingMovies: [],
         }
 
         this.movieService = new MovieService();
@@ -30,15 +29,27 @@ export default class Movies extends Component {
     }
 
     fetchCategories() {
-        this.movieService.getTrending('movie', (movies) => {
+        this.movieService.getShowing(1, (movies) => {
             this.setState({
-                trendingMovies: movies
+                showingMovies: Lib.more(movies, '/movie?category=showing,page=1')
             });
         });
 
-        this.movieService.getShowing(1, (movies) => {
+        this.movieService.getIndonesianMovies(1, (movies) => {
             this.setState({
-                showingMovies: Lib.more(movies, '/movies?category=showing,page=1')
+                indonesianMovies: Lib.more(movies, '/movie?category=indonesian,page=1')
+            });
+        });
+
+        this.movieService.getPopularMovies(1, (movies) => {
+            this.setState({
+                popularMovies: Lib.more(movies, '/movie?category=popular,page=1')
+            });
+        });
+
+        this.movieService.getUpcomingMovies((movies) => {
+            this.setState({
+                upcomingMovies: movies
             });
         });
 
@@ -52,17 +63,33 @@ export default class Movies extends Component {
                 <div class="content">
 
                     <div class="title-section">
-                        <h3>Now Showing</h3>
-                        <a href="/movies?category=showing,page=1">
+                        <h3>Now Playing</h3>
+                        <a href="/movie?category=showing,page=1">
                             <span class="link">See All</span>
                         </a>
                     </div>
                     <Gallery movies={this.state.showingMovies}/>
 
                     <div class="title-section">
-                        <h3>Trending Movies </h3>
+                        <h3>Indonesian</h3>
+                        <a href="/movie?category=indonesian,page=1">
+                            <span class="link">See All</span>
+                        </a>
                     </div>
-                    <Gallery movies={this.state.trendingMovies}/>
+                    <Gallery movies={this.state.indonesianMovies}/>
+
+                    <div class="title-section">
+                        <h3>Most Popular</h3>
+                        <a href="/movie?category=popular,page=1">
+                            <span class="link">See All</span>
+                        </a>
+                    </div>
+                    <Gallery movies={this.state.popularMovies}/>
+
+                    <div class="title-section">
+                        <h3>Coming Soon</h3>
+                    </div>
+                    <Gallery movies={this.state.upcomingMovies}/>
 
                     <Footer/>
                 </div>

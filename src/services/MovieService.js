@@ -53,54 +53,74 @@ export default class MovieService {
 
 
     async getShowing(page, onSuccess) {
-        const params = [{
-                key: 'primary_release_date.gte',
-                val: Lib.formatDate(Lib.oneMonthBefore())
-            },
-            {
-                key: 'primary_release_date.lte',
-                val: Lib.formatDate(Lib.now())
-            },
-            {
-                key: 'sort_by',
-                val: 'popularity.desc'
-            },
-            {
-                key: 'page',
-                val: page
-            },
+        const params = [
+            { key: 'primary_release_date.gte', val: Lib.formatDate(Lib.oneMonthBefore()) },
+            { key: 'primary_release_date.lte', val: Lib.formatDate(Lib.now()) },
+            { key: 'sort_by', val: 'popularity.desc' },
+            { key: 'page', val: page },
         ];
         this.discover(params, onSuccess);
     }
 
-    async getMostPopular(onSuccess) {
-        const params = [{
-                key: 'sort_by',
-                val: 'vote_count.desc'
-            },
-            {
-                key: 'page',
-                val: 1
-            },
+    async getIndonesianMovies(page, onSuccess) {
+        const params = [
+            { key: 'region', val: 'ID' },
+            { key: 'with_original_language', val: 'id'},
+            { key: 'sort_by', val: 'popularity.desc' },
+            { key: 'page', val: page }
         ];
         this.discover(params, onSuccess);
     }
 
-    async getComingSoon(onSuccess) {
-        const params = [{
-                key: 'primary_release_date.gte',
-                val: Lib.formatDate(Lib.now())
-            },
-            {
-                key: 'sort_by',
-                val: 'popularity.desc'
-            },
-            {
-                key: 'page',
-                val: 1
-            },
+    async getPopularMovies(page, onSuccess) {
+        const params = [
+            { key: 'sort_by', val: 'vote_count.desc' },
+            { key: 'page', val: page },
         ];
         this.discover(params, onSuccess);
+    }
+
+    async getUpcomingMovies(onSuccess) {
+        const params = [
+            { key: 'primary_release_date.gte', val: Lib.formatDate(Lib.now()) },
+            { key: 'sort_by', val: 'popularity.desc' },
+            { key: 'page', val: 1 },
+        ];
+        this.discover(params, onSuccess);
+    }
+
+    async getMoviesByYear(year, page, onSuccess) {
+        const params = [
+            { key: 'primary_release_year', val: year },
+            { key: 'sort_by', val: 'popularity.desc' },
+            { key: 'page', val: page },
+        ];
+        this.discover(params, onSuccess);
+    }
+
+    
+
+    async getSimilarMovies(id, onSuccess) {
+        try {
+            const url = `/movie/${id}/recommendations`;
+
+            const response = await fetch(Lib.requestURL(url, null), Lib.requestHeader());
+            const responseJson = await response.json();
+
+            if (!response.ok) {
+                this.handleError();
+                return;
+            }
+
+            let movies = responseJson.results;
+            movies = Lib.filterMovies(movies);
+
+            onSuccess(movies);
+
+        } catch (error) {
+            console.log(error);
+            this.handleError();
+        }
     }
 
     // TODO: set onError callback handle
@@ -122,29 +142,6 @@ export default class MovieService {
             const movie = Lib.filterMovie(responseJson);
 
             onSuccess(movie);
-
-        } catch (error) {
-            console.log(error);
-            this.handleError();
-        }
-    }
-
-    async getSimilarMovies(id, onSuccess) {
-        try {
-            const url = `/movie/${id}/recommendations`;
-
-            const response = await fetch(Lib.requestURL(url, null), Lib.requestHeader());
-            const responseJson = await response.json();
-
-            if (!response.ok) {
-                this.handleError();
-                return;
-            }
-
-            let movies = responseJson.results;
-            movies = Lib.filterMovies(movies);
-
-            onSuccess(movies);
 
         } catch (error) {
             console.log(error);
