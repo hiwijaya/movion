@@ -219,6 +219,8 @@ export function filterPerson(rawData) {
     let ids = rawData.external_ids;
     ids.homepage = rawData.homepage;
 
+    const credits = rawData.movie_credits.cast.sort(compareCredits);
+
     let person = {
         id: rawData.id,
         name: rawData.name,
@@ -230,7 +232,7 @@ export function filterPerson(rawData) {
         social: ids,
         movies: filterMovies(rawData.movie_credits.cast),
         photos: rawData.images.profiles,
-        credits: rawData.movie_credits.cast,
+        credits: credits,
     }
 
     return person;
@@ -317,4 +319,11 @@ export function productionList(productions) {
 
 function getAge(birthdate) {
     return moment().year() - moment(birthdate).year();
+}
+
+function compareCredits(a, b){
+    if(getYear(a.release_date) > getYear(b.release_date)){
+        return -1;
+    }
+    return 1;
 }

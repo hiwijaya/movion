@@ -81,16 +81,16 @@ export default class Person extends Component {
         );
     }
 
-    renderPhotos() {
+    renderPhotos(photos) {
         return(
             <div class="photos">
                 <div class="title-section">
                     <h3>Photos</h3>
-                    <h6>{this.state.photos.length} images</h6>
+                    <h6>{photos.length} images</h6>
                 </div>
                 <div class="posters">
                     {
-                        this.state.photos.map((p, i) => (
+                        photos.map((p, i) => (
                             <img key={i} src={Lib.getPosterURL(p.file_path)} alt="posters"/>
                         ))
                     }
@@ -140,7 +140,7 @@ export default class Person extends Component {
 
                     {this.renderTab(this.state.selectedTab)}
                     {(this.state.selectedTab === 0) && this.renderMovies(this.state.movies)}
-                    {(this.state.selectedTab === 1) && this.renderPhotos()}
+                    {(this.state.selectedTab === 1) && this.renderPhotos(this.state.photos)}
                     {(this.state.selectedTab === 2) && this.renderCredits(this.state.credits)}
 
                     <Footer/>
