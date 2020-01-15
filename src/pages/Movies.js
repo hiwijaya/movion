@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import Menubar from '../components/Menubar';
+import Genres from '../components/Genres';
 import Gallery from '../components/Gallery';
 import Footer from '../components/Footer';
 import MovieService from '../services/MovieService.js';
@@ -61,6 +62,8 @@ export default class Movies extends Component {
                 <Menubar onSearchPress={() => this.discover.toggle()}/>
                 <Discover ref={(ref) =>{this.discover = ref}}/>
                 <div class="content">
+
+                    <Genres/>
 
                     <div class="title-section">
                         <h3>Now Playing</h3>
