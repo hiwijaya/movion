@@ -66,7 +66,7 @@ export function formatDate(date) {
     return '';
 }
 
-export function formatFullDate(date){
+function formatFullDate(date){
     if (date !== null) {
         return moment(date).format('D MMMM YYYY');
     }
@@ -74,7 +74,7 @@ export function formatFullDate(date){
 }
 
 // 123m --> 2h 3m
-export function formatMinutes(minutes) {
+function formatMinutes(minutes) {
     if (minutes === null) {
         return '?';
     }
@@ -96,7 +96,7 @@ export function getYear(date) {
     return '';
 }
 
-export function formatCurrency(amount) {
+function formatCurrency(amount) {
     if (amount === "") {
         return '0';
     }
@@ -111,7 +111,7 @@ export function formatCurrency(amount) {
     return '$' + formatedAmount;
 }
 
-export function handleNull(input, ifNull, result) {
+function handleNull(input, ifNull, result) {
     if (input === null || input === '' || input === 0 || input.length === 0) {
         return ifNull;
     }
@@ -126,7 +126,7 @@ export function getPosterURL(path) {
     return POSTER_URL + path;
 }
 
-export function getProfileURL(path) {
+function getProfileURL(path) {
     return PROFILE_URL + path;
 }
 
