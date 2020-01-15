@@ -4,6 +4,7 @@ import Menubar from '../components/Menubar';
 import Headline from '../components/Headline';
 import Gallery from '../components/Gallery';
 import Footer from '../components/Footer';
+import Preview from '../components/Preview';
 import MovieService from '../services/MovieService.js';
 import * as Lib from '../utils/Lib.js';
 
@@ -23,6 +24,7 @@ export default class Home extends Component {
 
         this.movieService = new MovieService();
         this.discover = null;
+        this.preview = null;
 
     }
 
@@ -53,8 +55,10 @@ export default class Home extends Component {
             <div>
                 <Menubar onSearchPress={() => this.discover.toggle()}/>
                 <Discover ref={(ref) =>{this.discover = ref}}/>
+                <Preview ref={(ref) => {this.preview = ref}}/>
                 <div class="content">
-                    <Headline movie={this.state.headlineMovie || undefined}/>
+                    <Headline movie={this.state.headlineMovie || undefined} 
+                        onTrailerPress={() => this.preview.show(this.state.headlineMovie.trailer)}/>
 
                     <div class="title-section">
                         <h3>Now Showing</h3>
