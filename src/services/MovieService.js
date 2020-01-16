@@ -98,6 +98,71 @@ export default class MovieService {
         this.discover(params, onSuccess);
     }
 
+    async getMoviesByGenre(genre_id, page, onSuccess) {
+        const params = [
+            { key: 'with_genres', val: genre_id },
+            { key: 'sort_by', val: 'popularity.desc' },
+            { key: 'page', val: page },
+        ];
+        this.discover(params, onSuccess);
+    }
+
+    async search(keyword, page, onSuccess) {
+        try{
+            const params = [
+                { key: 'query', val: keyword },
+                { key: 'page', val: page },
+            ];
+
+            const response = await fetch(Lib.requestURL('/search/multi', params), Lib.requestHeader());
+            const responseJson = await response.json();
+
+            if (!response.ok) {
+                this.handleError();
+                return;
+            }
+
+            let results = responseJson.results;
+            let filteredData = [];
+            for (let data of results) {
+
+                const mediaType = data.media_type;
+                
+                if(mediaType === 'tv'){
+                    continue;
+                }
+
+                if(mediaType === 'movie') {
+                    const movie = {
+                        mediaType,
+                        id: data.id,
+                        title: data.title,
+                        poster: getPosterURL(data.poster_path),
+                        rate: data.vote_average,
+                        releaseYear: getYear(data.release_date),
+                    }
+                    filteredData.push(movie);
+                }
+                if(mediaType === 'person') {
+                    const person = {
+                        mediaType,
+                        id: data.id,
+                        name: data.name,
+                        photo: Lib.getProfileURL(rawData.profile_path),
+                    }
+                    filteredData.push(person);
+                }
+                
+            }
+
+            onSuccess(filteredData);
+
+        } catch(error) {
+            console.log(error);
+            this.handleError();
+        }
+    }
+
     
 
     async getSimilarMovies(id, onSuccess) {
@@ -169,7 +234,8 @@ export default class MovieService {
              onSuccess(person);
 
         } catch(error) {
-
+            console.log(error);
+            this.handleError();
         }
     }
 

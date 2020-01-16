@@ -208,7 +208,7 @@ export function filterPersons(rawData) {
         let fd = {
             id: data.id,
             name: data.name,
-            photo: PROFILE_URL + data.profile_path
+            photo: getProfileURL(rawData.profile_path),
         }
         filteredData.push(fd);
     }
@@ -265,7 +265,7 @@ function getTopCast(casts) {
             continue;
         }
 
-        if (cast.length >= 15) {
+        if (cast.length >= 20) {
             break;
         }
 
