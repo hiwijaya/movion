@@ -63,6 +63,9 @@ export default class Movies extends Component {
                 <Discover ref={(ref) =>{this.discover = ref}}/>
                 <div class="content">
 
+                    <div class="title-section">
+                        <h3>Genres</h3>
+                    </div>
                     <Genres/>
 
                     <div class="title-section">

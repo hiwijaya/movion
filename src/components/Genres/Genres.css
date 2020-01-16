@@ -8,4 +8,24 @@
     scroll-snap-type: x mandatory;
     scroll-padding: 50px;
     -ms-overflow-style: none;
+
+    box-sizing: border-box;
+}
+.genres::-webkit-scrollbar {
+    display: none;
+}
+.genres a {
+    margin-right: 10px;
+    padding: 20px 40px;
+    color: #FFE170;
+    background-color: #262626;
+    scroll-snap-align: start;
+    transition: padding 0.2s ease;
+}
+.genres a:hover {
+    padding: 20px 50px;
+}
+.genres .pad {
+    flex-shrink: 0;
+    width: 50px;
 }

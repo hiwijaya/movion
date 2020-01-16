@@ -7,13 +7,15 @@ export default function Genres() {
 
     return(
         <div class="genres">
+            <span class="pad"/>
             {
                 GENRES.map((genre, i) => (
-                    <div key={i}>
-                        <h4>{genre.name}</h4>
-                    </div>
+                    <a key={i} href={`/movie?genre=${genre.id}`}>
+                        <h5>{genre.name}</h5>
+                    </a>
                 ))
             }
+            <span class="pad"/>
         </div>
     );
 }
