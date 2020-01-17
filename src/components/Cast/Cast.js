@@ -21,5 +21,6 @@ Cast.defaultProps = {
         id: '',
         photo: '',
         name: '',
+        character: '',
     }
 }

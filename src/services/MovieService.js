@@ -122,40 +122,8 @@ export default class MovieService {
                 return;
             }
 
-            let results = responseJson.results;
-            let filteredData = [];
-            for (let data of results) {
-
-                const mediaType = data.media_type;
-                
-                if(mediaType === 'tv'){
-                    continue;
-                }
-
-                if(mediaType === 'movie') {
-                    const movie = {
-                        mediaType,
-                        id: data.id,
-                        title: data.title,
-                        poster: getPosterURL(data.poster_path),
-                        rate: data.vote_average,
-                        releaseYear: getYear(data.release_date),
-                    }
-                    filteredData.push(movie);
-                }
-                if(mediaType === 'person') {
-                    const person = {
-                        mediaType,
-                        id: data.id,
-                        name: data.name,
-                        photo: Lib.getProfileURL(rawData.profile_path),
-                    }
-                    filteredData.push(person);
-                }
-                
-            }
-
-            onSuccess(filteredData);
+            let results = Lib.filterSearchResults(responseJson.results);
+            onSuccess(results);
 
         } catch(error) {
             console.log(error);

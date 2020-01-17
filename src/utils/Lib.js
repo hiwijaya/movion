@@ -138,6 +138,37 @@ export function getVideoThumbnail(videoId) {
     return `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
 }
 
+export function filterSearchResults(rawData) {
+    let filteredData = [];
+    for (let data of rawData) {
+
+        const mediaType = data.media_type;
+
+        if(mediaType === 'movie') {
+            const movie = {
+                mediaType,
+                id: data.id,
+                title: data.title,
+                poster: getPosterURL(data.poster_path),
+                rate: data.vote_average,
+                releaseYear: getYear(data.release_date),
+            }
+            filteredData.push(movie);
+        }
+        if(mediaType === 'person') {
+            const person = {
+                mediaType,
+                id: data.id,
+                name: data.name,
+                photo: getProfileURL(rawData.profile_path),
+                character: '',      // unused, just for prevent nullable for cast component
+            }
+            filteredData.push(person);
+        }  
+    }
+    return filteredData
+}
+
 
 // for /discover results
 export function filterMovies(rawData) {
