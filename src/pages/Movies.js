@@ -23,32 +23,47 @@ export default class Movies extends Component {
 
         this.movieService = new MovieService();
         this.discover = null;
+        this.handleScroll = this.handleScroll.bind(this);
     }
 
     componentDidMount() {
-        this.fetchCategories();
+        this.defaultFeed();
+        window.addEventListener('scroll', this.handleScroll);
     }
 
-    fetchCategories() {
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.handleScroll);
+    }
+
+    handleParameters(){
+        const display = Lib.getParameter(this, 'display');
+        const page = Lib.getParameter(this, 'page');
+
+        if(display !== null){
+
+        }
+    }
+
+    defaultFeed() {
         this.movieService.getShowing(1, (movies) => {
             this.setState({
-                showingMovies: Lib.more(movies, '/movie?category=showing,page=1')
+                showingMovies: Lib.more(movies, '/movie?display=showing,page=1')
             });
         });
 
         this.movieService.getIndonesianMovies(1, (movies) => {
             this.setState({
-                indonesianMovies: Lib.more(movies, '/movie?category=indonesian,page=1')
+                indonesianMovies: Lib.more(movies, '/movie?display=indonesia,page=1')
             });
         });
 
         this.movieService.getPopularMovies(1, (movies) => {
             this.setState({
-                popularMovies: Lib.more(movies, '/movie?category=popular,page=1')
+                popularMovies: Lib.more(movies, '/movie?display=popular,page=1')
             });
         });
 
-        this.movieService.getUpcomingMovies((movies) => {
+        this.movieService.getUpcomingMovies((movies) => {   // '/movie?display=upcoming'
             this.setState({
                 upcomingMovies: movies
             });
@@ -56,12 +71,24 @@ export default class Movies extends Component {
 
     }
 
+    isBottom(e) {
+        return e.getBoundingClientRect().bottom <= window.innerHeight;
+    }
+
+    handleScroll() {
+        const element = document.getElementById('content-movies');
+        if (this.isBottom(element)) {
+            console.log('header bottom reached');
+            document.removeEventListener('scroll', this.handleScroll);
+        }
+    }
+
     render() {
         return(
             <Fragment>
                 <Menubar onSearchPress={() => this.discover.toggle()}/>
                 <Discover ref={(ref) =>{this.discover = ref}}/>
-                <div class="content">
+                <div id="content-movies" class="content">
 
                     <div class="title-section">
                         <h3>Genres</h3>
@@ -70,15 +97,15 @@ export default class Movies extends Component {
 
                     <div class="title-section">
                         <h3>Now Playing</h3>
-                        <a href="/movie?category=showing,page=1">
+                        <a href="/movie?display=showing,page=1">
                             <span class="link">See All</span>
                         </a>
                     </div>
                     <Gallery movies={this.state.showingMovies}/>
 
                     <div class="title-section">
-                        <h3>Indonesian</h3>
-                        <a href="/movie?category=indonesian,page=1">
+                        <h3>Indonesia</h3>
+                        <a href="/movie?display=indonesia,page=1">
                             <span class="link">See All</span>
                         </a>
                     </div>
@@ -86,7 +113,7 @@ export default class Movies extends Component {
 
                     <div class="title-section">
                         <h3>Most Popular</h3>
-                        <a href="/movie?category=popular,page=1">
+                        <a href="/movie?display=popular,page=1">
                             <span class="link">See All</span>
                         </a>
                     </div>

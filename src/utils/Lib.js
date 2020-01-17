@@ -1,4 +1,5 @@
 import moment from 'moment';
+import queryString from 'query-string';
 
 
 const API_KEY = '3acc7bbfaa9ab936046d3d1e717296df';
@@ -8,6 +9,11 @@ const BACKDROP_URL = 'https://image.tmdb.org/t/p/w1280';
 const POSTER_URL = 'https://image.tmdb.org/t/p/w500';
 const PROFILE_URL = 'https://image.tmdb.org/t/p/h632';
 
+
+export function getParameter(context, key){
+    const parameters = queryString.parse(context.props.location.search);
+    return parameters[key] || null;
+}
 
 export function requestHeader() {
     return {
