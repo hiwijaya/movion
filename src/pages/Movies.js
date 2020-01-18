@@ -136,6 +136,9 @@ export default class Movies extends Component {
         if(this.page > this.pages){
             return;
         }
+        if(this.state.loading){
+            return;
+        }
 
         const content = document.getElementById('content-movies');
         if (this.isBottom(content)) {
@@ -154,7 +157,7 @@ export default class Movies extends Component {
                     <div class="movies">
                         {
                             this.state.movies.map((movie, i) => (
-                                <Poster key={movie.id} movie={movie}/>
+                                <Poster key={movie.id} movie={movie} inGallery={false}/>
                             ))
                         }
                     </div>

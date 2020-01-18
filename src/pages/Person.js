@@ -5,7 +5,6 @@ import Social from '../components/Social';
 import Footer from '../components/Footer';
 import MovieService from '../services/MovieService';
 import * as Lib from '../utils/Lib.js';
-import Cast from '../components/Cast/Cast';
 
 
 export default class Person extends Component {
