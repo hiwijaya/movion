@@ -17,6 +17,7 @@ export default class Movies extends Component {
 
         this.state = {
             discovering: false,
+            label: '',
             movies: [],
 
             showingMovies: [],
@@ -33,7 +34,8 @@ export default class Movies extends Component {
 
         this.page = 1;
         this.pages = 1;
-        this.category = null;   // including genre
+        this.genre = null;
+        this.category = null;
     }
 
     componentDidMount() {
@@ -48,21 +50,29 @@ export default class Movies extends Component {
 
 
     handleParameters() {
-        const display = Lib.getParameter(this, 'category');
-        if(display === null){
-            this.initFeed();
+        const genre = Lib.getParameter(this, 'genre');
+        const category = Lib.getParameter(this, 'category');
+        if(genre === null && category === null) {
+            this.feed();
             return;
         }
 
-        this.category = display.toLowerCase().trim();
         this.setState({discovering: true});
+        if(genre !== null){
+            this.genre = genre.trim();
+            this.getMoviesByGenre(this.genre, this.page);
+            return;
+        }
 
-        this.getMovies(this.category, this.page);
+        if(category !== null){
+            this.category = category.toLowerCase().trim();
+            this.getMoviesByCategory(this.category, this.page);
+        }
 
     }
 
 
-    initFeed() {
+    feed() {
         this.movieService.getShowing(1, (movies) => {
             this.setState({
                 showingMovies: Lib.more(movies, '/movie?category=showing')
@@ -88,7 +98,28 @@ export default class Movies extends Component {
         });
     }
 
-    getMovies(category, page) {
+    getMoviesByGenre(genre, page) {
+
+        this.setState({loading: true});
+
+        this.movieService.getMoviesByGenre(genre, page, (movies, pages) => {
+
+            let moreMovies = this.state.movies;
+            moreMovies.push(...movies);
+
+            this.setState({
+                label: `Genre: ${this.movieService.getGenreById(genre)}`, 
+                movies: moreMovies, 
+                loading: false
+            });
+
+            this.pages = pages;
+        });
+
+        this.page += 1;
+    }
+
+    getMoviesByCategory(category, page) {
 
         this.setState({loading: true});
 
@@ -97,32 +128,46 @@ export default class Movies extends Component {
                 this.movieService.getShowing(page, (movies, pages) => {
                     let moreMovies = this.state.movies;
                     moreMovies.push(...movies);
-                    this.setState({movies: moreMovies, loading: false});
+                    this.setState({
+                        label: 'Now Playing',
+                        movies: moreMovies,
+                        loading: false
+                    });
                     this.pages = pages;
                 });
                 break;
+
             case 'indonesia':
                 this.movieService.getIndonesianMovies(page, (movies, pages) => {
                     let moreMovies = this.state.movies;
                     moreMovies.push(...movies);
-                    this.setState({movies: moreMovies, loading: false});
+                    this.setState({
+                        label: 'Indonesian Movies',
+                        movies: moreMovies,
+                        loading: false
+                    });
                     this.pages = pages;
                 });
                 break;
+
             case 'popular':
                 this.movieService.getPopularMovies(page, (movies, pages) => {
                     let moreMovies = this.state.movies;
                     moreMovies.push(...movies);
-                    this.setState({movies: moreMovies, loading: false});
+                    this.setState({
+                        label: 'Most Popular',
+                        movies: moreMovies,
+                        loading: false
+                    });
                     this.pages = pages;
                 });
                 break;
+                
             default:
-                alert('unknown category');
+                console.log('Unknown category');
         }
 
         this.page += 1;
-
     }
 
     isBottom(e) {
@@ -142,8 +187,12 @@ export default class Movies extends Component {
 
         const content = document.getElementById('content-movies');
         if (this.isBottom(content)) {
-            this.getMovies(this.category, this.page);
-            console.log('on bottom');
+            if(this.genre !== null){
+                this.getMoviesByGenre(this.genre, this.page);
+            }
+            else if(this.category !== null){
+                this.getMoviesByCategory(this.category, this.page);
+            }
         }
     }
 
@@ -152,7 +201,7 @@ export default class Movies extends Component {
             return(
                 <Fragment>
                     <div class="title-section">
-                        <h3>Results</h3>
+                        <h3>{this.state.label}</h3>
                     </div>
                     <div class="movies">
                         {
@@ -182,7 +231,7 @@ export default class Movies extends Component {
                     <Gallery movies={this.state.showingMovies}/>
 
                     <div class="title-section">
-                        <h3>Indonesia</h3>
+                        <h3>Indonesian Movies</h3>
                         <a href="/movie?category=indonesia">
                             <span class="link">See All</span>
                         </a>

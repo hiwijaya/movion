@@ -210,6 +210,15 @@ export default class MovieService {
         }
     }
 
+    getGenreById(id) {
+        for (let g of GENRES) {
+            if (id === g.id.toString()) {
+                return g.name;
+            }
+        }
+        return '-';
+    }
+
     handleError() {
         alert('Oops, something went wrong. Please try again.');
     }
