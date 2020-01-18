@@ -25,10 +25,13 @@ export default class Movies extends Component {
             upcomingMovies: [],
         }
 
-        this.page = 1;
         this.movieService = new MovieService();
         this.discover = null;
         this.handleScroll = this.handleScroll.bind(this);
+
+        this.page = 1;
+        this.pages = 1;
+        this.category = null;   // including genre
     }
 
     componentDidMount() {
@@ -40,73 +43,101 @@ export default class Movies extends Component {
         window.removeEventListener('scroll', this.handleScroll);
     }
 
+
+
     handleParameters() {
-        const display = Lib.getParameter(this, 'display');
+        const display = Lib.getParameter(this, 'category');
         if(display === null){
-            this.defaultFeed();
+            this.initFeed();
             return;
         }
 
-        this.setState({
-            discovering: true
-        });
+        this.category = display.toLowerCase().trim();
+        this.setState({discovering: true});
 
-        if(display.toLowerCase() === 'showing'){
-            this.movieService.getShowing(this.page, (movies) => {
-                this.setState({
-                    movies
-                });
-            });
-        }
+        this.getMovies(this.category, this.page);
 
     }
 
-    defaultFeed() {
+
+    initFeed() {
         this.movieService.getShowing(1, (movies) => {
             this.setState({
-                showingMovies: Lib.more(movies, '/movie?display=showing')
+                showingMovies: Lib.more(movies, '/movie?category=showing')
             });
         });
 
         this.movieService.getIndonesianMovies(1, (movies) => {
             this.setState({
-                indonesianMovies: Lib.more(movies, '/movie?display=indonesia')
+                indonesianMovies: Lib.more(movies, '/movie?category=indonesia')
             });
         });
 
         this.movieService.getPopularMovies(1, (movies) => {
             this.setState({
-                popularMovies: Lib.more(movies, '/movie?display=popular')
+                popularMovies: Lib.more(movies, '/movie?category=popular')
             });
         });
 
-        this.movieService.getUpcomingMovies((movies) => {   // '/movie?display=upcoming'
+        this.movieService.getUpcomingMovies((movies) => {   // /movie?category=upcoming
             this.setState({
                 upcomingMovies: movies
             });
         });
+    }
+
+    getMovies(category, page) {
+
+        switch(category){
+            case 'showing':
+                this.movieService.getShowing(page, (movies, pages) => {
+                    let moreMovies = this.state.movies;
+                    moreMovies.push(...movies);
+                    this.setState({movies: moreMovies});
+                    this.pages = pages;
+                });
+                break;
+            case 'indonesia':
+                this.movieService.getIndonesianMovies(page, (movies, pages) => {
+                    let moreMovies = this.state.movies;
+                    moreMovies.push(...movies);
+                    this.setState({movies: moreMovies});
+                    this.pages = pages;
+                });
+                break;
+            case 'popular':
+                this.movieService.getPopularMovies(page, (movies, pages) => {
+                    let moreMovies = this.state.movies;
+                    moreMovies.push(...movies);
+                    this.setState({movies: moreMovies});
+                    this.pages = pages;
+                });
+                break;
+            default:
+                alert('unknown category');
+        }
+
+        this.page += 1;
 
     }
 
     isBottom(e) {
-        return e.getBoundingClientRect().bottom <= window.innerHeight;
+        return e.getBoundingClientRect().bottom <= (window.innerHeight + 10);
     }
 
     handleScroll() {
-        const element = document.getElementById('content-movies');
-        if (this.isBottom(element)) {
-            this.page += 1;
-            this.movieService.getShowing(this.page, (movies) => {
-                let moreMovies = this.state.movies;
-                moreMovies.push(...movies);
-                this.setState({
-                    movies: moreMovies
-                });
-            });
-            console.log('header bottom reached');
-            document.removeEventListener('scroll', this.handleScroll);
+        if(!this.state.discovering){
+            return;
         }
-        // TODO: NEED A LOT OF REFACTORING. Consider to add Loading component, and add 'safe fetch load' logic
+        if(this.page > this.pages){
+            return;
+        }
+
+        const content = document.getElementById('content-movies');
+        if (this.isBottom(content)) {
+            this.getMovies(this.category, this.page);
+            console.log('on bottom');
+        }
     }
 
     renderContent(discovering){
@@ -138,7 +169,7 @@ export default class Movies extends Component {
 
                     <div class="title-section">
                         <h3>Now Playing</h3>
-                        <a href="/movie?display=showing">
+                        <a href="/movie?category=showing">
                             <span class="link">See All</span>
                         </a>
                     </div>
@@ -146,7 +177,7 @@ export default class Movies extends Component {
 
                     <div class="title-section">
                         <h3>Indonesia</h3>
-                        <a href="/movie?display=indonesia">
+                        <a href="/movie?category=indonesia">
                             <span class="link">See All</span>
                         </a>
                     </div>
@@ -154,7 +185,7 @@ export default class Movies extends Component {
 
                     <div class="title-section">
                         <h3>Most Popular</h3>
-                        <a href="/movie?display=popular">
+                        <a href="/movie?category=popular">
                             <span class="link">See All</span>
                         </a>
                     </div>

@@ -41,9 +41,12 @@ export default class MovieService {
             }
 
             let movies = responseJson.results;
+            let pages = responseJson.total_pages;
+            let total = responseJson.total_results;
+            
             movies = Lib.filterMovies(movies);
 
-            onSuccess(movies);
+            onSuccess(movies, pages, total);
 
         } catch (error) {
             console.log(error);
