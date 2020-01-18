@@ -23,6 +23,8 @@ export default class Movies extends Component {
             indonesianMovies: [],   // add dynamic localization
             popularMovies: [],
             upcomingMovies: [],
+
+            loading: false
         }
 
         this.movieService = new MovieService();
@@ -88,12 +90,14 @@ export default class Movies extends Component {
 
     getMovies(category, page) {
 
+        this.setState({loading: true});
+
         switch(category){
             case 'showing':
                 this.movieService.getShowing(page, (movies, pages) => {
                     let moreMovies = this.state.movies;
                     moreMovies.push(...movies);
-                    this.setState({movies: moreMovies});
+                    this.setState({movies: moreMovies, loading: false});
                     this.pages = pages;
                 });
                 break;
@@ -101,7 +105,7 @@ export default class Movies extends Component {
                 this.movieService.getIndonesianMovies(page, (movies, pages) => {
                     let moreMovies = this.state.movies;
                     moreMovies.push(...movies);
-                    this.setState({movies: moreMovies});
+                    this.setState({movies: moreMovies, loading: false});
                     this.pages = pages;
                 });
                 break;
@@ -109,7 +113,7 @@ export default class Movies extends Component {
                 this.movieService.getPopularMovies(page, (movies, pages) => {
                     let moreMovies = this.state.movies;
                     moreMovies.push(...movies);
-                    this.setState({movies: moreMovies});
+                    this.setState({movies: moreMovies, loading: false});
                     this.pages = pages;
                 });
                 break;
@@ -154,8 +158,7 @@ export default class Movies extends Component {
                             ))
                         }
                     </div>
-
-                    
+                    { this.renderLoading(this.state.loading) }
                 </Fragment>
             );
         }
@@ -197,6 +200,12 @@ export default class Movies extends Component {
                     <Gallery movies={this.state.upcomingMovies}/>
                 </Fragment>
             );
+        }
+    }
+
+    renderLoading(loading){
+        if(loading){
+            return <div class="loading">Loading...</div>;
         }
     }
 

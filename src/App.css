@@ -253,7 +253,10 @@
 /* /person */
 
 
-
+.loading {
+	text-align: center;
+	color: #80868B;
+}
 
 
 
