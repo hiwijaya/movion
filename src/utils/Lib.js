@@ -1,8 +1,7 @@
 import moment from 'moment';
 import queryString from 'query-string';
+import config from '../config';
 
-
-const API_KEY = '3acc7bbfaa9ab936046d3d1e717296df';
 
 const URL = 'https://api.themoviedb.org/3';
 const BACKDROP_URL = 'https://image.tmdb.org/t/p/w1280';
@@ -33,7 +32,7 @@ export function requestURL(endpoint, params) {
     // add default params
     params.push({
         key: 'api_key',
-        val: API_KEY
+        val: config.API_KEY
     });
     params.push({
         key: 'include_adult',
