@@ -210,6 +210,29 @@ export default class MovieService {
         }
     }
 
+    async getPopularPersons(page, onSuccess) {
+        try{
+            const params = [{ key: 'page', val: page }];
+
+            const response = await fetch(Lib.requestURL('/person/popular', params), Lib.requestHeader());
+            const responseJson = await response.json();
+
+            if (!response.ok) {
+                this.handleError();
+                return;
+            }
+
+            let persons = Lib.filterPersons(responseJson.results);
+            let pages = responseJson.total_pages;
+            let total = responseJson.total_results;
+            onSuccess(persons, pages, total)
+
+        } catch(error) {
+            console.log(error);
+            this.handleError();
+        }
+    }
+
     getGenreById(id) {
         for (let g of GENRES) {
             if (id === g.id.toString()) {

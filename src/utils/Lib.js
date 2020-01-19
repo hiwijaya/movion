@@ -243,7 +243,7 @@ export function filterPersons(rawData) {
         let fd = {
             id: data.id,
             name: data.name,
-            photo: getProfileURL(rawData.profile_path),
+            photo: getProfileURL(data.profile_path),
         }
         filteredData.push(fd);
     }

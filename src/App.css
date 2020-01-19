@@ -229,7 +229,7 @@
 .profile .overview li span {
 	width: 150px;
 }
-.movies {
+.movies, .persons {
 	display: flex;
 	flex-wrap: wrap;
 	margin: 0 50px;
