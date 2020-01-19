@@ -1,6 +1,5 @@
 import moment from 'moment';
 import queryString from 'query-string';
-import config from '../config';
 
 
 const URL = 'https://api.themoviedb.org/3';
@@ -32,7 +31,7 @@ export function requestURL(endpoint, params) {
     // add default params
     params.push({
         key: 'api_key',
-        val: config.API_KEY
+        val: process.env.REACT_APP_TMDB_API_KEY
     });
     params.push({
         key: 'include_adult',
