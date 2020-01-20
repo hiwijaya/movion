@@ -35,3 +35,25 @@
 .cast .character {
     color: #80868B;
 }
+.cast-grid {
+    width: 16.666666%;
+    margin-bottom: 40px;
+}
+
+@media only screen and (max-width: 1500px) {
+    .cast-grid {
+        width: 20%;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .cast-grid {
+        width: 25%;
+    }
+}
+
+@media only screen and (max-width: 640px) {
+    .cast-grid {
+        width: 33.333333%;
+    }
+}

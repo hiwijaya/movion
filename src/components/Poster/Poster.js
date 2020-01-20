@@ -17,15 +17,13 @@ function Poster({movie, inGallery, more}) {
 
     return(
         <a href={`/movie/${movie.id}`} className={(inGallery) ? 'poster' : 'poster poster-grid'}>
-            <div>
-                <div class="image">
-                    <img src={movie.poster} alt="Poster"/>
-                </div>
-                <h5 class="title">{movie.title}</h5>
-                <div class="chorizontal">
-                    <Rating rate={movie.rate}/>
-                    <h5 class="year">{movie.releaseYear}</h5>
-                </div>
+            <div class="image">
+                <img src={movie.poster} alt="Poster"/>
+            </div>
+            <h5 class="title">{movie.title}</h5>
+            <div class="chorizontal">
+                <Rating rate={movie.rate}/>
+                <h5 class="year">{movie.releaseYear}</h5>
             </div>
         </a>
     );
