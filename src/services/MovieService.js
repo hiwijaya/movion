@@ -125,8 +125,10 @@ export default class MovieService {
                 return;
             }
 
+            let pages = responseJson.total_pages;
+            let total = responseJson.total_results;
             let results = Lib.filterSearchResults(responseJson.results);
-            onSuccess(results);
+            onSuccess(results, pages, total);
 
         } catch(error) {
             console.log(error);

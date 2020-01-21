@@ -160,14 +160,17 @@ export function filterSearchResults(rawData) {
             filteredData.push(movie);
         }
         if(mediaType === 'person') {
-            const person = {
-                mediaType,
-                id: data.id,
-                name: data.name,
-                photo: getProfileURL(rawData.profile_path),
-                character: '',      // unused, just for prevent nullable for cast component
+            const job = data.known_for_department;
+            if(job === 'Acting' || job === 'Production'){
+                const person = {
+                    mediaType,
+                    id: data.id,
+                    name: data.name,
+                    photo: getProfileURL(data.profile_path),
+                    character: '',      // unused, just for prevent nullable for cast component
+                }
+                filteredData.push(person);
             }
-            filteredData.push(person);
         }  
     }
     return filteredData
