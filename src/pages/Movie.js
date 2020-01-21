@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
-import Discover from '../components/Discover';
 import Menubar from '../components/Menubar';
 import Headline from '../components/Headline';
 import Rating from '../components/Rating';
@@ -47,7 +46,6 @@ export default class Movie extends Component {
 
         this.movieId = props.match.params.id;
         this.movieService = new MovieService();
-        this.discover = null;
         this.preview = null;
     }
 
@@ -207,8 +205,7 @@ export default class Movie extends Component {
     render() {
         return (
             <div>
-                <Menubar onSearchPress={() => this.discover.toggle()}/>
-                <Discover ref={(ref) => {this.discover = ref}}/>
+                <Menubar/>
                 <Preview ref={(ref) => {this.preview = ref}}/>
                 <div class="content">
                     <Headline movie={this.state.movie || undefined} 

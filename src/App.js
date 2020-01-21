@@ -7,6 +7,7 @@ import Movie from './pages/Movie';
 import Movies from './pages/Movies';
 import Person from './pages/Person';
 import Persons from './pages/Persons';
+import Search from './pages/Search';
 
 
 export default function App() {
@@ -14,6 +15,7 @@ export default function App() {
         <BrowserRouter>
             <ScrollTop/>
             <Switch>
+                <Route path="/search" component={Search} />
                 <Route path="/movie/:id" component={Movie} />
                 <Route path="/movie" component={Movies} />
                 <Route path="/person/:id" component={Person} />

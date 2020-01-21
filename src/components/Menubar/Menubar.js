@@ -5,6 +5,7 @@ import home from '../../images/icon/home.svg';
 import film from '../../images/icon/film.svg';
 import people from '../../images/icon/people.svg';
 import search from '../../images/icon/search.svg';
+import Discover from '../Discover';
 
 
 class Menubar extends Component {
@@ -17,6 +18,7 @@ class Menubar extends Component {
         }
 
         this.indicatorStyle = {borderRight: '5px solid #FFE170'};
+        this.discover = null;
     }
 
     componentDidMount() {
@@ -43,26 +45,22 @@ class Menubar extends Component {
             </a>
         );
     }
-    
-    handleSearch() {
-        this.props.onSearchPress();
-    }
 
     render() {
         return(
             <div class="menubar">
+                <Discover ref={(ref) =>{this.discover = ref}}/>
                 {this.renderMenu('/', home, 'home')}
                 {this.renderMenu('/movie', film, 'movie')}
                 {this.renderMenu('/person', people, 'person')}
+
                 <div class="menu" style={(this.state.currentMenu === 'search') ? this.indicatorStyle : null}
-                    role="button" onClick={() => this.handleSearch()}>
+                    role="button" onClick={() => { this.discover.toggle(); }}>
                     <img src={search} alt="Search"/>
                 </div>
+                
             </div>
         );
     }
-}
-Menubar.defaultProps = {
-    onSearchPress: () => {}
 }
 export default withRouter(Menubar);

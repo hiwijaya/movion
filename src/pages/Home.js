@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Discover from '../components/Discover';
 import Menubar from '../components/Menubar';
 import Headline from '../components/Headline';
 import Gallery from '../components/Gallery';
@@ -21,7 +20,6 @@ export default class Home extends Component {
         }
 
         this.movieService = new MovieService();
-        this.discover = null;
         this.preview = null;
 
     }
@@ -48,8 +46,7 @@ export default class Home extends Component {
     render() {
         return(
             <div>
-                <Menubar onSearchPress={() => this.discover.toggle()}/>
-                <Discover ref={(ref) =>{this.discover = ref}}/>
+                <Menubar/>
                 <Preview ref={(ref) => {this.preview = ref}}/>
                 <div class="content">
                     <Headline movie={this.state.headlineMovie || undefined} 

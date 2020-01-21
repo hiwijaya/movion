@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import Discover from '../components/Discover';
 import Menubar from '../components/Menubar';
 import Cast from '../components/Cast';
 import Footer from '../components/Footer';
 import MovieService from '../services/MovieService.js';
-import * as Lib from '../utils/Lib.js';
 
 
 export default class Persons extends Component {
@@ -18,7 +16,6 @@ export default class Persons extends Component {
         }
 
         this.movieService = new MovieService();
-        this.discover = null;
         this.handleScroll = this.handleScroll.bind(this);
 
         this.page = 1;
@@ -79,8 +76,7 @@ export default class Persons extends Component {
     render() {
         return(
             <div>
-                <Menubar onSearchPress={() => this.discover.toggle()}/>
-                <Discover ref={(ref) =>{this.discover = ref}}/>
+                <Menubar/>
                 <div id="content-persons" class="content">
                     <div class="title-section">
                         <h3>Popular Person </h3>

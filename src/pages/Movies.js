@@ -7,8 +7,6 @@ import Footer from '../components/Footer';
 import MovieService from '../services/MovieService.js';
 import * as Lib from '../utils/Lib.js';
 
-import Discover from '../components/Discover';
-
 
 export default class Movies extends Component {
 
@@ -29,7 +27,6 @@ export default class Movies extends Component {
         }
 
         this.movieService = new MovieService();
-        this.discover = null;
         this.handleScroll = this.handleScroll.bind(this);
 
         this.page = 1;
@@ -264,8 +261,7 @@ export default class Movies extends Component {
     render() {
         return(
             <Fragment>
-                <Menubar onSearchPress={() => this.discover.toggle()}/>
-                <Discover ref={(ref) =>{this.discover = ref}}/>
+                <Menubar/>
                 <div id="content-movies" class="content">
 
                     {this.renderContent(this.state.discovering)}
