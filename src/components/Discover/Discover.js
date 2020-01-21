@@ -8,11 +8,9 @@ export default class Discover extends Component {
         super(props);
 
         this.state = {
-            show: false,
             keyword: ''
         }
 
-        
         this.discoverElement = null;
         this.toggleOff = this.toggleOff.bind(this);
     }
@@ -48,9 +46,12 @@ export default class Discover extends Component {
         this.setState({keyword: e.target.value});
     }
 
-    handleSubmit(e){
+    handleSubmit(e) {
         if(e.key === 'Enter'){
-            alert(this.state.keyword);
+            if(this.state.keyword.length <= 1){
+                return;
+            }
+            window.location.href = `/search?q=${encodeURI(this.state.keyword)}`;
         }
     }
 
@@ -60,8 +61,8 @@ export default class Discover extends Component {
             <div className={toggleClass} ref={(element) => {this.discoverElement = element}}>
                 <input type="text" placeholder="Search for movie or person..." 
                     value={this.state.keyword}
-                    onChange={(event) => this.handleChange(event)} 
-                    onKeyPress={(event) => this.handleSubmit(event)} />
+                    onChange={(e) => this.handleChange(e)} 
+                    onKeyPress={(e) => this.handleSubmit(e)} />
             </div>
         );
     }

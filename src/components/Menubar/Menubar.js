@@ -50,6 +50,7 @@ class Menubar extends Component {
         return(
             <div class="menubar">
                 <Discover ref={(ref) =>{this.discover = ref}}/>
+                
                 {this.renderMenu('/', home, 'home')}
                 {this.renderMenu('/movie', film, 'movie')}
                 {this.renderMenu('/person', people, 'person')}
