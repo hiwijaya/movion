@@ -123,15 +123,15 @@ function handleNull(input, ifNull, result) {
 }
 
 export function getBackdropURL(path) {
-    return BACKDROP_URL + path;
+    return (path === null) ? null : BACKDROP_URL + path;
 }
 
 export function getPosterURL(path) {
-    return POSTER_URL + path;
+    return (path === null) ? null : POSTER_URL + path;
 }
 
 function getProfileURL(path) {
-    return PROFILE_URL + path;
+    return (path === null) ? null : PROFILE_URL + path;
 }
 
 export function getYoutubeURL(key) {

@@ -100,6 +100,7 @@
 }
 
 
+
 .photos {
 	width: 100%;
 	margin-top: 20px 0;
@@ -195,6 +196,21 @@
 /*  /movie  */
 
 
+.default-image {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 320px;
+	height: 480px;
+	flex-shrink: 0;
+	background-color: #202124;
+}
+.default-image img {
+	width: 40px;
+    height: 40px;
+}
+
+
 /* /person */
 .profile {
 	display: flex;
@@ -203,7 +219,7 @@
 }
 .profile .photo {
 	width: 320px;
-	flex-shrink: 0;		/* prevent div shrinking inside flexbox (even has set width) */
+	flex-shrink: 0;				/* prevent div shrinking inside flexbox (even has set width) */
 }
 .profile .photo img {
 	width: 100%;

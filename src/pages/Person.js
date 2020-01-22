@@ -3,6 +3,7 @@ import Menubar from '../components/Menubar';
 import Poster from '../components/Poster';
 import Social from '../components/Social';
 import Footer from '../components/Footer';
+import image from '../images/icon/image.svg';
 import MovieService from '../services/MovieService';
 import * as Lib from '../utils/Lib.js';
 
@@ -15,7 +16,7 @@ export default class Person extends Component {
         this.state = {
             selectedTab: 0,
 
-            photo: '',
+            photo: null,
             name: '',
             biography: '',
             knownFor: '',
@@ -115,6 +116,23 @@ export default class Person extends Component {
             </ul>
         );
     }
+
+    renderPhoto(photo){
+        if(photo === null){
+            return(
+                <div class="default-image">
+                    <img src={image} alt="Photos"/>
+                </div>
+            );
+        }
+        else{
+            return(
+                <div class="photo">
+                    <img src={this.state.photo} alt="Photos"/>
+                </div>
+            );
+        }
+    }
     
     render() {
         return (
@@ -122,9 +140,9 @@ export default class Person extends Component {
                 <Menubar/>
                 <div class="content">
                     <div class="profile">
-                        <div class="photo">
-                            <img src={this.state.photo} alt="Photos"/>
-                        </div>
+
+                        {this.renderPhoto(this.state.photo)}
+
                         <div class="overview">
                             <h2>{this.state.name}</h2>
                             <p>{this.state.biography}</p>
