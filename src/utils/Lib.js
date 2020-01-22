@@ -161,13 +161,13 @@ export function filterSearchResults(rawData) {
         }
         if(mediaType === 'person') {
             const job = data.known_for_department;
-            if(job === 'Acting' || job === 'Production'){
+            if(job === 'Acting' || job === 'Production' || job === 'Directing'){
                 const person = {
                     mediaType,
                     id: data.id,
                     name: data.name,
                     photo: getProfileURL(data.profile_path),
-                    character: '',      // unused, just for prevent nullable for cast component
+                    character: '',      // unused, just to prevent nullable for cast component
                 }
                 filteredData.push(person);
             }
