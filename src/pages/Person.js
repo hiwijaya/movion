@@ -23,8 +23,6 @@ export default class Person extends Component {
             birthday: '',
             placeBirth: '',
             social: [],
-
-            movies: [],
             photos: [],
             credits: [],
         }
@@ -44,7 +42,6 @@ export default class Person extends Component {
                 birthday: person.birthday,
                 placeBirth: person.placeBirth,
                 social: person.social,
-                movies: person.movies,
                 photos: person.photos,
                 credits: person.credits,
             });
@@ -106,9 +103,9 @@ export default class Person extends Component {
                     credits.map((cast, i) => (
                         <li key={cast.id}>
                             <a href={`/movie/${cast.id}`} class="chorizontal">
-                                <div class="year">{Lib.getYear(cast.release_date) || '-'}</div>
+                                <div class="year">{cast.releaseYear || '-'}</div>
                                 <div>{cast.title}</div>
-                                <div class="character">&nbsp;{`as ${cast.character}`}</div>
+                                <div class="character">&nbsp;{`as ${cast.role}`}</div>
                             </a>
                         </li>
                     ))
@@ -156,7 +153,7 @@ export default class Person extends Component {
                     </div>
 
                     {this.renderTab(this.state.selectedTab)}
-                    {(this.state.selectedTab === 0) && this.renderMovies(this.state.movies)}
+                    {(this.state.selectedTab === 0) && this.renderMovies(this.state.credits)}
                     {(this.state.selectedTab === 1) && this.renderPhotos(this.state.photos)}
                     {(this.state.selectedTab === 2) && this.renderCredits(this.state.credits)}
 

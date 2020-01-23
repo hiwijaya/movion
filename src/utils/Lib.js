@@ -183,9 +183,9 @@ export function filterMovies(rawData) {
     for (let data of rawData) {
 
         // ignore movie with no poster or backdrop
-        if (data.poster_path === null || data.backdrop_path === null) {
-            continue;
-        }
+        // if (data.poster_path === null || data.backdrop_path === null) {
+        //     continue;
+        // }
 
         const fd = {
             id: data.id,
@@ -257,23 +257,58 @@ export function filterPerson(rawData) {
     let ids = rawData.external_ids;
     ids.homepage = rawData.homepage;
 
-    const credits = rawData.movie_credits.cast.sort(compareCredits);
+    const casts = rawData.movie_credits.cast;
+    const crews = rawData.movie_credits.crew;
+    let credits = casts;
+    casts.push(...crews);
+
+    credits = credits.sort(compareCredits);
+
+    const knownFor = rawData.known_for_department;
 
     let person = {
         id: rawData.id,
         name: rawData.name,
         photo: getProfileURL(rawData.profile_path),
         biography: rawData.biography,
-        knownFor: rawData.known_for_department,
+        knownFor: knownFor,
         birthday: `${formatFullDate(rawData.birthday)} (age ${getAge(rawData.birthday)})`,
         placeBirth: rawData.place_of_birth,
         social: ids,
-        movies: filterMovies(rawData.movie_credits.cast),
         photos: rawData.images.profiles,
-        credits: credits,
+        credits: filterCredits(credits),
     }
 
     return person;
+}
+
+// credits.cast & credits.crew
+function filterCredits(credits) {
+
+    let filteredData = [];
+    for (let data of credits){
+
+        let asCrew = data.hasOwnProperty('job');
+        if(asCrew){
+            if(data.job !== 'Director' && data.job !== 'Producer'){
+                continue;
+            }
+        }
+
+        const fd = {
+            id: data.id,
+            title: data.title,
+            poster: getPosterURL(data.poster_path),
+            rate: data.vote_average,
+            releaseYear: getYear(data.release_date),
+            role: asCrew ? data.job : data.character,
+        }
+        filteredData.push(fd);
+
+    }
+    
+    return filteredData;
+
 }
 
 function getTrailer(videos) {
@@ -293,6 +328,10 @@ function getDirector(crew) {
         }
     }
     return '?';
+}
+
+function isDirector(known_for){
+    return (known_for === 'Directing' || known_for === 'Production');
 }
 
 function getTopCast(casts) {
