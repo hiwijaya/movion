@@ -24,7 +24,7 @@ export default function Cast({person, inGallery}) {
 Cast.defaultProps = {
     person: {
         id: '',
-        photo: '',
+        photo: null,
         name: '',
         character: '',
     },

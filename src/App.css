@@ -73,6 +73,10 @@
 }
 .movie-info .poster {
 	width: 320px;
+	flex-shrink: 0;
+}
+.movie-info .poster img {
+	width: 100%;
 }
 .movie-info .detail {
 	margin-left: 50px;

@@ -6,12 +6,23 @@
     overflow: hidden;
     flex-shrink: 0;
 }
-.poster .image {
+.poster .image, .poster .default-poster {
     position: relative;
     width: 100%;
     height: 0;
     padding-top: 150%;    /* TIPS: This is your aspect ratio */
     overflow: hidden;
+    background-color: #202124;
+}
+.poster .default-poster img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -20px;
+    margin-left: -20px;
+    width: 40px;
+    height: 40px;
+    transition: transform 0.5s ease;
 }
 .poster .image img {
     position: absolute;
@@ -23,7 +34,7 @@
     height: 100%;
     transition: transform 0.5s ease;
 }
-.poster .image:hover img {
+.poster .image:hover img, .poster .default-poster:hover img {
     transform: scale(1.1);
 }
 .poster .title {

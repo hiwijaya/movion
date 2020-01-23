@@ -7,7 +7,8 @@ import Social from '../components/Social';
 import Gallery from '../components/Gallery';
 import Footer from '../components/Footer';
 import Preview from '../components/Preview';
-import PlayCircle from '../images/icon/play-circle.svg';
+import playCircle from '../images/icon/play-circle.svg';
+import image from '../images/icon/image.svg';
 import MovieService from '../services/MovieService.js';
 import * as Lib from '../utils/Lib.js';
 
@@ -21,7 +22,7 @@ export default class Movie extends Component {
             selectedTab: 0,
             
             movie: null,
-            poster: '',
+            poster: null,
             title: '',
             release: '',
             rate: 0,
@@ -121,7 +122,9 @@ export default class Movie extends Component {
         return(
             <div class="overview">
                 <div class="movie-info">
-                    <img class="poster" src={this.state.poster} alt={this.state.title}/>
+
+                    {this.renderPoster(this.state.poster)}
+
                     <div class="detail">
                         <div class="title">{this.state.title}</div>
                         <p>{this.state.overview}</p>
@@ -189,7 +192,7 @@ export default class Movie extends Component {
                         <div key={i} class="video" role="button" onClick={() => this.preview.show(Lib.getYoutubeURL(v.key))}>
                             <div class="thumbnail">
                                 <img src={Lib.getVideoThumbnail(v.key)} alt="videos"/>
-                                <img class="play" src={PlayCircle} alt="play"/>
+                                <img class="play" src={playCircle} alt="play"/>
                             </div>
                             <div class="title">
                                 <h5>{v.name}</h5>
@@ -200,6 +203,23 @@ export default class Movie extends Component {
                 }
             </div>
         );
+    }
+
+    renderPoster(poster) {
+        if(poster === null){
+            return(
+                <div class="default-image">
+                    <img src={image} alt={this.state.title}/>
+                </div>
+            );
+        }
+        else {
+            return(
+                <div class="poster">
+                    <img src={this.state.poster} alt={this.state.title}/>
+                </div>
+            );
+        }
     }
 
     render() {

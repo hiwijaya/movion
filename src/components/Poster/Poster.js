@@ -1,6 +1,7 @@
 import React from 'react';
 import './Poster.css';
 import Rating from '../Rating/Rating';
+import image from '../../images/icon/image.svg';
 
 
 function Poster({movie, inGallery, more}) {
@@ -17,9 +18,16 @@ function Poster({movie, inGallery, more}) {
 
     return(
         <a href={`/movie/${movie.id}`} className={(inGallery) ? 'poster' : 'poster poster-grid'}>
-            <div class="image">
-                <img src={movie.poster} alt="Poster"/>
-            </div>
+            {
+                (movie.poster ===  null) ? 
+                (<div class="default-poster">
+                    <img src={image} alt="Poster"/>
+                </div>
+                ) : 
+                (<div class="image">
+                    <img src={movie.poster} alt="Poster"/>
+                </div>)
+            }
             <h5 class="title">{movie.title}</h5>
             <div class="chorizontal">
                 <Rating rate={movie.rate}/>
@@ -30,7 +38,7 @@ function Poster({movie, inGallery, more}) {
 }
 Poster.defaultProps = {
     movie: {
-        poster: '',
+        poster: null,
         title: '',
         releaseYear: ''
     },
