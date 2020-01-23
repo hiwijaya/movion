@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Menubar from '../components/Menubar';
 import Poster from '../components/Poster/';
 import Cast from '../components/Cast';
+import Footer from '../components/Footer';
 import MovieService from '../services/MovieService';
 import * as Lib from '../utils/Lib';
 
@@ -13,17 +14,25 @@ export default class Search extends Component {
 
         this.state = {
             keyword: '',
-            results: []
+            results: [],
+
+            loading: false
         }
 
         this.movieService = new MovieService();
+        this.handleScroll = this.handleScroll.bind(this);
+
         this.page = 1;
         this.pages = 1;
-
     }
 
     componentDidMount() {
         this.search();
+        window.addEventListener('scroll', this.handleScroll);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.handleScroll);
     }
 
     search() {
@@ -33,24 +42,56 @@ export default class Search extends Component {
             return
         }
 
-        this.setState({ keyword });
+        this.setState({ 
+            keyword,
+            loading: true
+        });
 
         this.movieService.search(q, this.page, (results, pages) => {
+            const moreResults = this.state.results;
+            moreResults.push(...results);
             this.setState({
-                results: results
+                results: moreResults,
+                loading: false
             });
             this.pages = pages;
             this.page += 1;
-        })
+        });
 
-        
+    }
+
+    isBottom(e) {
+        return e.getBoundingClientRect().bottom <= (window.innerHeight + 10);
+    }
+
+    handleScroll() {
+        if(this.state.keyword === ''){
+            return;
+        }
+        if(this.page > this.pages){
+            return;
+        }
+        if(this.state.loading){
+            return;
+        }
+
+        const content = document.getElementById('content-search');
+        if (this.isBottom(content)) {
+            this.search();
+        }
+    }
+
+    renderLoading(loading){
+        if(loading){
+            return <div class="loading">Loading...</div>
+        }
     }
 
     render() {
         return (
             <div>
                 <Menubar/>
-                <div class="content">
+                <div id="content-search" class="content">
                     <div class="title-section">
                         <h3>Results for: "{this.state.keyword}" </h3>
                     </div>
@@ -67,7 +108,9 @@ export default class Search extends Component {
                             })
                         }
                     </div>
-
+                    {this.renderLoading(this.state.loading)}
+                    
+                    <Footer/>
                 </div>
                 
             </div>
