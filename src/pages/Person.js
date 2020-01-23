@@ -24,6 +24,7 @@ export default class Person extends Component {
             placeBirth: '',
             social: [],
             photos: [],
+            movies: [],
             credits: [],
         }
 
@@ -43,6 +44,7 @@ export default class Person extends Component {
                 placeBirth: person.placeBirth,
                 social: person.social,
                 photos: person.photos,
+                movies: person.movies,
                 credits: person.credits,
             });
         });
@@ -153,7 +155,7 @@ export default class Person extends Component {
                     </div>
 
                     {this.renderTab(this.state.selectedTab)}
-                    {(this.state.selectedTab === 0) && this.renderMovies(this.state.credits)}
+                    {(this.state.selectedTab === 0) && this.renderMovies(this.state.movies)}
                     {(this.state.selectedTab === 1) && this.renderPhotos(this.state.photos)}
                     {(this.state.selectedTab === 2) && this.renderCredits(this.state.credits)}
 

@@ -254,38 +254,41 @@ export function filterPersons(rawData) {
 }
 
 export function filterPerson(rawData) {
-    let ids = rawData.external_ids;
-    ids.homepage = rawData.homepage;
+
+    let socialIds = rawData.external_ids;
+    socialIds.homepage = rawData.homepage;
 
     const casts = rawData.movie_credits.cast;
     const crews = rawData.movie_credits.crew;
-    let credits = casts;
-    casts.push(...crews);
+    let credits = crews;
+    crews.push(...casts);
 
     credits = credits.sort(compareCredits);
 
-    const knownFor = rawData.known_for_department;
+    const {filteredMovies, filteredCredits} = filterCredits(credits);
 
     let person = {
         id: rawData.id,
         name: rawData.name,
         photo: getProfileURL(rawData.profile_path),
         biography: rawData.biography,
-        knownFor: knownFor,
+        knownFor: rawData.known_for_department,
         birthday: `${formatFullDate(rawData.birthday)} (age ${getAge(rawData.birthday)})`,
         placeBirth: rawData.place_of_birth,
-        social: ids,
+        social: socialIds,
         photos: rawData.images.profiles,
-        credits: filterCredits(credits),
+        movies: filteredMovies,
+        credits: filteredCredits,
     }
 
     return person;
 }
 
-// credits.cast & credits.crew
 function filterCredits(credits) {
 
-    let filteredData = [];
+    let filteredMovies = [];
+    let filteredCredits = []
+
     for (let data of credits){
 
         let asCrew = data.hasOwnProperty('job');
@@ -303,12 +306,17 @@ function filterCredits(credits) {
             releaseYear: getYear(data.release_date),
             role: asCrew ? data.job : data.character,
         }
-        filteredData.push(fd);
+        filteredCredits.push(fd);
+
+        // checking array object contain a value
+        if(filteredMovies.filter(d => d.id === data.id).length > 0) {
+            continue;
+        }
+        filteredMovies.push(fd);
 
     }
     
-    return filteredData;
-
+    return {filteredMovies, filteredCredits};
 }
 
 function getTrailer(videos) {
