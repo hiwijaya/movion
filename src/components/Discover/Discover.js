@@ -12,6 +12,7 @@ export default class Discover extends Component {
         }
 
         this.discoverElement = null;
+        this.inputElement = null;
         this.toggleOff = this.toggleOff.bind(this);
     }
 
@@ -24,6 +25,7 @@ export default class Discover extends Component {
             this.setState({
                 show: true
             }, () => {
+                this.inputElement.focus();
                 document.addEventListener('click', this.toggleOff);
             })
         }
@@ -59,7 +61,8 @@ export default class Discover extends Component {
         const toggleClass = (this.state.show) ? 'discover show' : 'discover hide';
         return(
             <div className={toggleClass} ref={(element) => {this.discoverElement = element}}>
-                <input type="text" placeholder="Search for movie or person..." 
+                <input type="text" ref={(element) => {this.inputElement = element}}
+                    placeholder="Search for movie or person..." 
                     value={this.state.keyword}
                     onChange={(e) => this.handleChange(e)} 
                     onKeyPress={(e) => this.handleSubmit(e)} />
