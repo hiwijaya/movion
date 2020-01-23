@@ -94,10 +94,10 @@ function formatMinutes(minutes) {
 }
 
 export function getYear(date) {
-    if (date !== null) {
-        return moment(date).year();
+    if (date === null || date === '') {
+        return null;
     }
-    return '';
+    return moment(date).year();
 }
 
 function formatCurrency(amount) {
@@ -291,6 +291,12 @@ function filterCredits(credits) {
 
     for (let data of credits){
 
+        // ignore movie with less information
+        let releaseYear = getYear(data.release_date);
+        if(releaseYear === null){
+            continue;
+        }
+
         let asCrew = data.hasOwnProperty('job');
         if(asCrew){
             if(data.job !== 'Director' && data.job !== 'Producer'){
@@ -303,7 +309,7 @@ function filterCredits(credits) {
             title: data.title,
             poster: getPosterURL(data.poster_path),
             rate: data.vote_average,
-            releaseYear: getYear(data.release_date),
+            releaseYear: releaseYear,
             role: asCrew ? data.job : data.character,
         }
         filteredCredits.push(fd);
