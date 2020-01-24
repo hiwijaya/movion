@@ -129,7 +129,7 @@ export default class Movie extends Component {
                         <div class="title">{this.state.title}</div>
                         <p>{this.state.overview}</p>
                         <ul>
-                            <li><span>Director</span><Link to={'/person/director'} className="link">{this.state.director}</Link></li>
+                            <li><span>Director</span><Link to={`/person/${this.state.director.id}`} className="link">{this.state.director.name}</Link></li>
                             <li><span>Release</span>{this.state.release}</li>
                             <li><span>Genre</span>{this.renderGenres(this.state.genres)}</li>
                             <li><span>Duration</span>{this.state.duration}</li>

@@ -223,7 +223,7 @@ export function filterMovie(rawData) {
         budget: handleNull(rawData.budget, '?', formatCurrency(rawData.budget)),
         revenue: handleNull(rawData.revenue, '?', formatCurrency(rawData.revenue)),
         duration: formatMinutes(rawData.runtime), // in minutes
-        director: getDirector(rawData.credits.crew),
+        director: getDirector(rawData.credits.crew),    // {id, name}
         cast: getTopCast(rawData.credits.cast), // {id, name, character, picture}
         trailer: getTrailer(rawData.videos.results),
         social: ids,
@@ -336,12 +336,16 @@ function getTrailer(videos) {
 
 
 function getDirector(crew) {
+    let id = '';
+    let name = '?';
     for (let c of crew) {
         if (c.job === 'Director') {
-            return c.name;
+            id = c.id;
+            name = c.name;
+            break;
         }
     }
-    return '?';
+    return {id, name};
 }
 
 function isDirector(known_for){
