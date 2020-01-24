@@ -103,7 +103,7 @@ export default class Person extends Component {
 
     renderCredits(credits) {
         return(
-            <ul class="credits">
+            <ul class="timeline">
                 {
                     credits.map((cast, i) => (
                         <li key={cast.id}>
