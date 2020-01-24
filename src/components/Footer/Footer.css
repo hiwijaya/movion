@@ -3,6 +3,10 @@
     margin-top: 100px;
     color: #80868B;
 }
+.footer a {
+    font-weight: 700;
+    color: #80868B;
+}
 .footer .tmdb {
     color: #01d277;
 }
