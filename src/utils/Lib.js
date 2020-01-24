@@ -130,7 +130,7 @@ export function getPosterURL(path) {
     return (path === null) ? null : POSTER_URL + path;
 }
 
-function getProfileURL(path) {
+export function getProfileURL(path) {
     return (path === null) ? null : PROFILE_URL + path;
 }
 

@@ -3,6 +3,7 @@ import Menubar from '../components/Menubar';
 import Poster from '../components/Poster';
 import Social from '../components/Social';
 import Footer from '../components/Footer';
+import Preview from '../components/Preview';
 import image from '../images/icon/image.svg';
 import MovieService from '../services/MovieService';
 import * as Lib from '../utils/Lib.js';
@@ -30,6 +31,7 @@ export default class Person extends Component {
 
         this.personId = props.match.params.id;
         this.movieService = new MovieService();
+        this.preview = null;
 
     }
 
@@ -90,7 +92,8 @@ export default class Person extends Component {
                 <div class="posters">
                     {
                         photos.map((p, i) => (
-                            <img key={i} src={Lib.getPosterURL(p.file_path)} alt="posters"/>
+                            <img key={i} src={Lib.getProfileURL(p.file_path)} role="button" alt="posters"
+                                onClick={() => this.preview.show(Lib.getProfileURL(p.file_path))}/>
                         ))
                     }
                 </div>
@@ -137,6 +140,7 @@ export default class Person extends Component {
         return (
             <div>
                 <Menubar/>
+                <Preview ref={(ref) => {this.preview = ref}}/>
                 <div class="content">
                     <div class="profile">
 
