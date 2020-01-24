@@ -304,13 +304,16 @@ function filterCredits(credits) {
             }
         }
 
+        let role = asCrew ? data.job : data.character;
+        role = role || '?';
+
         const fd = {
             id: data.id,
             title: data.title,
             poster: getPosterURL(data.poster_path),
             rate: data.vote_average,
             releaseYear: releaseYear,
-            role: asCrew ? data.job : data.character,
+            role: role,
         }
         filteredCredits.push(fd);
 
