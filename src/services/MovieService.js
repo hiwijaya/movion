@@ -6,7 +6,7 @@ export default class MovieService {
     // media: movie/person
     async getTrending(media, onSuccess) {
         try {
-            const response = await fetch(Lib.requestURL(`/trending/${media}/week`, null), Lib.requestHeader());
+            const response = await fetch(Lib.requestURL(`/trending/${media}/day`, null), Lib.requestHeader());
             const responseJson = await response.json();
 
             if (!response.ok) {
