@@ -328,3 +328,38 @@
 	background-color: #262626;
 }
 /* scroll */
+
+
+
+
+
+/* responsive */
+@media only screen and (max-width: 1024px) {
+	.photos .backdrops img {
+		width: 25%;
+	}
+
+	.photos .posters img {
+		width: 20%;
+	}
+}
+
+@media only screen and (max-width: 640px) {
+	.photos .backdrops img {
+		width: 33.333333%;
+	}
+
+	.photos .posters img {
+		width: 25%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.photos .backdrops img {
+		width: 50%;
+	}
+
+	.photos .posters img {
+		width: 33.333333%;
+	}
+}

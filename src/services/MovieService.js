@@ -92,6 +92,7 @@ export default class MovieService {
         this.discover(params, onSuccess);
     }
 
+    // TODO: put a logic to catch 'years keyword' on discover component
     async getMoviesByYear(year, page, onSuccess) {
         const params = [
             { key: 'primary_release_year', val: year },
