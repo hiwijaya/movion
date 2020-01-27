@@ -50,10 +50,26 @@ export default class Discover extends Component {
 
     handleSubmit(e) {
         if(e.key === 'Enter'){
-            if(this.state.keyword.length <= 1){
+            const keyword = this.state.keyword.trim();
+
+            if(keyword.length <= 1){
                 return;
             }
-            window.location.href = `/search?q=${encodeURI(this.state.keyword)}`;
+
+            if(keyword.toLowerCase().startsWith('year=')){
+                let year = keyword.slice(5).trim();
+                if(year.length !== 4){
+                    return
+                }
+                if(isNaN(year)){
+                    return;
+                }
+                window.location.href = `/search?year=${encodeURI(year)}`;
+            }
+            else{
+                window.location.href = `/search?q=${encodeURI(keyword)}`;
+            }
+
         }
     }
 
@@ -62,7 +78,7 @@ export default class Discover extends Component {
         return(
             <div className={toggleClass} ref={(element) => {this.discoverElement = element}}>
                 <input type="text" ref={(element) => {this.inputElement = element}}
-                    placeholder="Search for movie or person..." 
+                    placeholder="Search for movie, person, or year=2020" 
                     value={this.state.keyword}
                     onChange={(e) => this.handleChange(e)} 
                     onKeyPress={(e) => this.handleSubmit(e)} />

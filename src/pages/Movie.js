@@ -86,6 +86,7 @@ export default class Movie extends Component {
         this.setState({selectedTab: i});
     }
 
+    // TODO: handle empty genres
     renderGenres(genres){
         if(genres === null){
             return;

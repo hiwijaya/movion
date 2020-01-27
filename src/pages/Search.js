@@ -24,10 +24,11 @@ export default class Search extends Component {
 
         this.page = 1;
         this.pages = 1;
+        this.searchByYear = false;
     }
 
     componentDidMount() {
-        this.search();
+        this.handleParameter();
         window.addEventListener('scroll', this.handleScroll);
     }
 
@@ -35,29 +36,60 @@ export default class Search extends Component {
         window.removeEventListener('scroll', this.handleScroll);
     }
 
-    search() {
+    handleParameter() {
+
         const q = Lib.getParameter(this, 'q');
-        const keyword = decodeURI(q);
-        if(keyword === null){
-            return
+        const year = Lib.getParameter(this, 'year');
+
+        if(q === null){
+            if(year === null){
+                return;
+            }
+            this.searchByYear = true;
         }
 
-        this.setState({ 
-            keyword,
-            loading: true
-        });
 
-        this.movieService.search(q, this.page, (results, pages) => {
-            const moreResults = this.state.results;
-            moreResults.push(...results);
-            this.setState({
-                results: moreResults,
-                loading: false
+        if(this.searchByYear){
+            if(isNaN(year)){
+                return;
+            }
+            this.search(year);
+        }
+        else{
+            const keyword = decodeURI(q);
+            this.search(keyword);
+        } 
+
+    }
+
+    search(keyword){
+
+        this.setState({keyword, loading: true});
+
+        if(this.searchByYear){
+            this.movieService.getMoviesByYear(keyword, this.page, (results, pages) => {
+                const moreResults = this.state.results;
+                moreResults.push(...results);
+                this.setState({
+                    results: moreResults,
+                    loading: false
+                });
+                this.pages = pages;
+                this.page += 1;
             });
-            this.pages = pages;
-            this.page += 1;
-        });
-
+        }
+        else{
+            this.movieService.search(keyword, this.page, (results, pages) => {
+                const moreResults = this.state.results;
+                moreResults.push(...results);
+                this.setState({
+                    results: moreResults,
+                    loading: false
+                });
+                this.pages = pages;
+                this.page += 1;
+            });
+        }
     }
 
     isBottom(e) {
@@ -77,7 +109,7 @@ export default class Search extends Component {
 
         const content = document.getElementById('content-search');
         if (this.isBottom(content)) {
-            this.search();
+            this.search(this.state.keyword);
         }
     }
 
@@ -88,12 +120,15 @@ export default class Search extends Component {
     }
 
     render() {
+        const desc = (this.searchByYear) ? 
+            `Movies release in year: ${this.state.keyword}` : `Results for: "${this.state.keyword}"`;
+
         return (
             <div>
                 <Menubar/>
                 <div id="content-search" class="content">
                     <div class="title-section">
-                        <h3>Results for: "{this.state.keyword}" </h3>
+                        <h3> {desc} </h3>
                     </div>
 
                     <div class="results">

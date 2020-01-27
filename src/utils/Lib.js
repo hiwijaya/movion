@@ -188,6 +188,7 @@ export function filterMovies(rawData) {
         // }
 
         const fd = {
+            mediaType: 'movie',
             id: data.id,
             title: data.title,
             poster: getPosterURL(data.poster_path),
