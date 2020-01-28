@@ -245,6 +245,7 @@ export function filterPersons(rawData) {
         }
 
         let fd = {
+            mediaType: 'person',
             id: data.id,
             name: data.name,
             photo: getProfileURL(data.profile_path),

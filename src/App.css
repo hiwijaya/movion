@@ -335,6 +335,26 @@
 
 /* responsive */
 @media only screen and (max-width: 1024px) {
+
+	.content {
+		padding-left: 0;
+  	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	.photos .backdrops img {
 		width: 25%;
 	}

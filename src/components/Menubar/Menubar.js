@@ -17,7 +17,6 @@ class Menubar extends Component {
             currentMenu: 'home'
         }
 
-        this.indicatorStyle = {borderRight: '5px solid #FFE170'};
         this.discover = null;
     }
 
@@ -40,7 +39,7 @@ class Menubar extends Component {
 
     renderMenu(url, icon, menu){
         return(
-            <a href={url} class="menu" style={(this.state.currentMenu === menu) ? this.indicatorStyle : null}>
+            <a href={url} className={(this.state.currentMenu === menu) ? 'menu indicator' : 'menu'}>
                 <img src={icon} alt="Menu"/>
             </a>
         );
