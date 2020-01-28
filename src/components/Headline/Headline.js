@@ -1,48 +1,78 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './Headline.css';
 import { Link } from 'react-router-dom';
 import play from '../../images/icon/play.svg';
 import Rating from '../Rating';
 import * as Lib from '../../utils/Lib';
 
+export default class Headline extends Component {
 
-function renderTrailerButton(onTrailerPress) {
-    return(
-        <button type="button" class="trailer-button center" onClick={() => onTrailerPress()}>
-            <img src={play} alt="play"/>
-            <h5> Watch Trailer</h5>
-        </button>
-    );
-}
+    constructor(props){
+        super(props);
 
-function Headline({movie, onTrailerPress}) {
+        this.state = {
+            windowWidth: 0
+        }
 
-    const background = {
-        backgroundImage: `linear-gradient(to right, #000, transparent 50%, transparent), url(${movie.backdrop})`
+        this.updateDimensions = this.updateDimensions.bind(this);
+
     }
 
-    return (
-        <div class="headline">
-            <span/>
-            <div class="backdrop" style={background}></div>
-            <div class="desc cvertical">
-                <Link to={`/movie/${movie.id}`}>
-                    <h1>{movie.title}</h1>
-                </Link>
-                <div class="info chorizontal">
-                    <Rating rate={movie.rate}/>
-                    <h5>{`${movie.vote} reviews`}</h5>
-                    <h5>{movie.shortGenre}</h5>
-                    <h5>{movie.duration}</h5>
-                    <h5>{movie.releaseYear}</h5>
+    componentDidMount(){
+        this.updateDimensions();
+        window.addEventListener("resize", this.updateDimensions);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener("resize", this.updateDimensions);
+    }
+
+    updateDimensions() {
+        let windowWidth = typeof window !== "undefined" ? window.innerWidth : 0;
+        this.setState({ windowWidth });
+    }
+
+    renderTrailerButton(onTrailerPress){
+        return(
+            <button type="button" class="trailer-button center" onClick={() => onTrailerPress()}>
+                <img src={play} alt="play"/>
+                <h5> Watch Trailer</h5>
+            </button>
+        );
+    }
+
+    render(){
+        const background = {
+            backgroundImage: `linear-gradient(to right, #000, transparent 50%, transparent), url(${this.props.movie.backdrop})`,
+        }
+        const backgroundResponsive = {
+            backgroundImage: `linear-gradient(to top, #000, transparent 50%, transparent), url(${this.props.movie.backdrop})`,
+        }
+
+        return (
+            <div class="headline">
+                <span/>
+                <div class="backdrop" style={(this.state.windowWidth < 1024) ? backgroundResponsive : background}></div>
+
+                <div class="desc cvertical">
+                    <Link to={`/movie/${this.props.movie.id}`}>
+                        <h1>{this.props.movie.title}</h1>
+                    </Link>
+                    <div class="info chorizontal">
+                        <Rating rate={this.props.movie.rate}/>
+                        <h5>{`${this.props.movie.vote} reviews`}</h5>
+                        <h5>{this.props.movie.shortGenre}</h5>
+                        <h5>{this.props.movie.duration}</h5>
+                        <h5>{this.props.movie.releaseYear}</h5>
+                    </div>
+                    <p>
+                        {Lib.getShortOverview(this.props.movie.overview)}
+                    </p>
+                    {this.renderTrailerButton(this.props.onTrailerPress)}
                 </div>
-                <p>
-                    {Lib.getShortOverview(movie.overview)}
-                </p>
-                {renderTrailerButton(onTrailerPress)}
             </div>
-        </div>
-    );
+        );
+    }
 }
 Headline.defaultProps = {
     movie: {
@@ -58,4 +88,3 @@ Headline.defaultProps = {
     },
     onTrailerPress: () => {} 
 }
-export default Headline;

@@ -47,7 +47,7 @@
     }
     .menubar .indicator {
         border-right: 0;
-        border-top: 2px solid #FFE170;
+        border-bottom: 2px solid #FFE170;
     }
 	
 }

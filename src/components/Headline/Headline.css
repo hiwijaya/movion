@@ -16,6 +16,7 @@
     /* background-size: 110% 110%;
     animation: shrink 10s infinite alternate; */
 }
+
 /* @keyframes shrink {
     0% {
       background-size: 110% 110%;
@@ -60,4 +61,26 @@
     width: 14px;
     height: 14px;
     margin-right: 10px;
+}
+
+
+@media only screen and (max-width: 1500px) {
+
+}
+
+@media only screen and (max-width: 1024px) {
+    .headline span {
+        width: 50%;
+    }
+}
+
+
+@media only screen and (max-width: 640px) {
+    .headline .backdrop {
+        background: linear-gradient(0deg, rgba(0,0,0,1) 20%, rgba(255,255,255,0) 100%)
+    }
+}
+
+@media only screen and (max-width: 480px) {
+
 }
