@@ -1,6 +1,5 @@
 .footer {
-    margin: 50px;
-    margin-top: 100px;
+    margin: 100px 50px 50px 50px;
     color: #80868B;
 }
 .footer a {
@@ -9,4 +8,24 @@
 }
 .footer .tmdb {
     color: #01d277;
+}
+
+@media only screen and (max-width: 1500px) {
+   
+}
+
+@media only screen and (max-width: 1024px) {
+    .footer {
+        margin: 100px 30px 80px 30px;
+    }
+}
+
+@media only screen and (max-width: 640px) {
+    .footer {
+        margin: 100px 20px 70px 20px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+   
 }

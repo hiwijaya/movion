@@ -6,9 +6,6 @@
     overflow: hidden;
     flex-shrink: 0;
 }
-.small-cast {
-    width: 180px;
-}
 .cast .photo, .cast .default-photo {
     position: relative;
     width: 100%;
