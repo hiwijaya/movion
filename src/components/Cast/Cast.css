@@ -1,10 +1,13 @@
 .cast {
-    width: 200px;
-    padding-right: 10px;
+    width: 240px;
+    margin-right: 10px;
     box-sizing: border-box;
     scroll-snap-align: start;
     overflow: hidden;
     flex-shrink: 0;
+}
+.small-cast {
+    width: 180px;
 }
 .cast .photo, .cast .default-photo {
     position: relative;
@@ -54,20 +57,27 @@
     margin-bottom: 40px;
 }
 
+
 @media only screen and (max-width: 1500px) {
     .cast-grid {
         width: 20%;
     }
 }
-
 @media only screen and (max-width: 1024px) {
+    .cast {
+        width: 200px;
+    }
     .cast-grid {
         width: 25%;
     }
 }
-
 @media only screen and (max-width: 640px) {
     .cast-grid {
         width: 33.333333%;
+    }
+}
+@media only screen and (max-width: 480px) {
+    .cast {
+        width: 180px;
     }
 }
