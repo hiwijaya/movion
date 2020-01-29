@@ -16,3 +16,30 @@
     flex-shrink: 0;
     width: 50px;
 }
+
+
+@media only screen and (max-width: 1500px) {
+
+}
+
+@media only screen and (max-width: 1024px) {
+    .gallery {
+        scroll-padding: 30px;
+    }
+    .gallery .pad {
+        width: 30px;
+    }
+}
+
+@media only screen and (max-width: 640px) {
+    .gallery {
+        scroll-padding: 30px;
+    }
+    .gallery .pad {
+        width: 20px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    
+}
