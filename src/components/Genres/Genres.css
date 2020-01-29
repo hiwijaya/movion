@@ -8,7 +8,6 @@
     scroll-snap-type: x mandatory;
     scroll-padding: 50px;
     -ms-overflow-style: none;
-
     box-sizing: border-box;
 }
 .genres::-webkit-scrollbar {
@@ -28,4 +27,35 @@
 .genres .pad {
     flex-shrink: 0;
     width: 50px;
+}
+
+
+
+@media only screen and (max-width: 1500px) {
+   
+}
+
+@media only screen and (max-width: 1024px) {
+    .genres {
+        scroll-padding: 30px;
+    }
+    .genres .pad {
+        width: 30px;
+    }
+}
+
+@media only screen and (max-width: 640px) {
+    .genres {
+        scroll-padding: 20px;
+    }
+    .genres a {
+        padding: 15px 35px;
+    }
+    .genres .pad {
+        width: 20px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+   
 }
