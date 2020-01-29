@@ -2,8 +2,10 @@ import React, {Component} from 'react';
 import './Headline.css';
 import { Link } from 'react-router-dom';
 import play from '../../images/icon/play.svg';
+import playCircle from '../../images/icon/play-circle.svg';
 import Rating from '../Rating';
 import * as Lib from '../../utils/Lib';
+
 
 export default class Headline extends Component {
 
@@ -52,18 +54,20 @@ export default class Headline extends Component {
         return (
             <div class="headline">
                 <span/>
-                <div class="backdrop" style={(this.state.windowWidth < 1024) ? backgroundResponsive : background}></div>
+                <div class="backdrop center" style={(this.state.windowWidth < 1024) ? backgroundResponsive : background}>
+                    <img src={playCircle} class="trailer-play" alt="play trailer"/>
+                </div>
 
-                <div class="desc cvertical">
+                <div class="desc">
                     <Link to={`/movie/${this.props.movie.id}`}>
-                        <h1>{this.props.movie.title}</h1>
+                        <div class="title">{this.props.movie.title}</div>
                     </Link>
                     <div class="info chorizontal">
                         <Rating rate={this.props.movie.rate}/>
                         <h5>{`${this.props.movie.vote} reviews`}</h5>
                         <h5>{this.props.movie.shortGenre}</h5>
-                        <h5>{this.props.movie.duration}</h5>
-                        <h5>{this.props.movie.releaseYear}</h5>
+                        <h5 class="duration">{this.props.movie.duration}</h5>
+                        <h5 class="year">{this.props.movie.releaseYear}</h5>
                     </div>
                     <p>
                         {Lib.getShortOverview(this.props.movie.overview)}

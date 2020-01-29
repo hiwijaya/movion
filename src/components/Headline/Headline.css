@@ -13,19 +13,11 @@
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-    /* background-size: 110% 110%;
-    animation: shrink 10s infinite alternate; */
 }
-
-/* @keyframes shrink {
-    0% {
-      background-size: 110% 110%;
-    }
-    100% {
-      background-size: 100% 100%;
-    }
-} */
 .headline .desc {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     position: absolute;
     padding: 50px;
     max-width: 600px;
@@ -63,24 +55,86 @@
     margin-right: 10px;
 }
 
+.trailer-play {
+    display: none;
+    width: 64px;
+    height: 64px;
+}
+
 
 @media only screen and (max-width: 1500px) {
 
 }
 
 @media only screen and (max-width: 1024px) {
+    .headline {
+        flex-direction: column-reverse;
+        height: 500px;
+    }
+    .headline .backdrop {
+        height: 400px;
+    }
     .headline span {
-        width: 50%;
+        width: 100%;
+        height: 100px;
+        box-sizing: border-box;
+    }
+    .headline .desc {
+        justify-content: flex-end;
+        max-width: 100%;
+        padding: 30px;
+    }
+
+
+    .trailer-button {
+        display: none;
+    }
+    .trailer-play {
+        display: block;
     }
 }
 
 
 @media only screen and (max-width: 640px) {
+    .headline {
+        height: 400px;
+    }
     .headline .backdrop {
-        background: linear-gradient(0deg, rgba(0,0,0,1) 20%, rgba(255,255,255,0) 100%)
+        height: 350px;
+    }
+    .headline span {
+        width: 100%;
+        height: 50px;
+    }
+    .headline .desc .title {
+        font-size: 2.0em;
+    }
+    .headline .desc {
+        padding: 20px;
+    }
+    .headline .desc .info {
+        margin: 10px 0;
+        margin-bottom: 0;
+    }
+    .headline .desc .info .duration,
+    .headline .desc .info .year,
+    .headline .desc p {
+        display: none;
     }
 }
 
 @media only screen and (max-width: 480px) {
-
+    .headline {
+        height: 350px;
+    }
+    .headline .backdrop {
+        height: 300px;
+    }
+    .headline span {
+        width: 100%;
+        height: 50px;
+    }
+    .headline .desc .title {
+        font-size: 1.8em;
+    }
 }
