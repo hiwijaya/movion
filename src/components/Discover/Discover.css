@@ -26,3 +26,27 @@
 .hide {
     height: 0;
 }
+
+
+@media only screen and (max-width: 1500px) {
+   
+}
+
+@media only screen and (max-width: 1024px) {
+    .discover {
+        left: 0;
+    }
+    .discover input {
+        margin: 0 30px;
+    }
+}
+
+@media only screen and (max-width: 640px) {
+    .discover input {
+        margin: 0 20px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+
+}
