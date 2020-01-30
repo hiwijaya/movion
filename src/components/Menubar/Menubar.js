@@ -25,14 +25,17 @@ class Menubar extends Component {
         if(route === '/'){
             this.setState({currentMenu: 'home'});
         }
-        else if(route === '/movie'){
+        else if(route.includes('/movie')){
             this.setState({currentMenu: 'movie'});
         }
-        else if(route === '/person'){
+        else if(route.includes('/person')){
             this.setState({currentMenu: 'person'});
         }
-        else if(route === '/search'){
+        else if(route.includes('/search')){
             this.setState({currentMenu: 'search'});
+        }
+        else {
+            this.setState({currentMenu: 'home'});
         }
     }
 
