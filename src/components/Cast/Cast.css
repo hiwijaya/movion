@@ -5,6 +5,7 @@
     scroll-snap-align: start;
     overflow: hidden;
     flex-shrink: 0;
+    box-sizing: border-box;
 }
 .cast .photo, .cast .default-photo {
     position: relative;
@@ -51,6 +52,8 @@
 }
 .cast-grid {
     width: 16.666666%;
+    padding-right: 10px;
+    margin-right: 0;
     margin-bottom: 40px;
 }
 
