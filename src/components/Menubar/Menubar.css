@@ -37,7 +37,6 @@
         height: 50px;
         padding: 0;
     }
-
     .menubar .menu {
         display: flex;
         align-items: center;
@@ -45,9 +44,13 @@
         margin-bottom: 0;
         flex: 1;
     }
+    .menubar .menu img {
+        width: 24px;
+        height: 24px;
+    }
     .menubar .indicator {
         border-right: 0;
-        border-bottom: 2px solid #FFE170;
+        border-bottom: 1px solid #FFE170;
     }
 	
 }
