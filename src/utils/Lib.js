@@ -365,10 +365,6 @@ function getTopCast(casts) {
             continue;
         }
 
-        if (cast.length >= 20) {
-            break;
-        }
-
         const c = {
             id: casts[i].id,
             name: casts[i].name,

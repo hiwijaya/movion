@@ -3,10 +3,14 @@ import './Cast.css';
 import image from '../../images/icon/image.svg';
 
 
-export default function Cast({person, inGallery}) {
+export default function Cast({person, inGallery, asCast}) {
+
+    let castClass = 'cast';
+    castClass = (inGallery) ? 'cast' : 'cast cast-grid';
+    castClass = (asCast) ? ' cast as-cast' : castClass;
 
     return(
-        <a href={`/person/${person.id}`} className={(inGallery) ? 'cast' : 'cast cast-grid'}>
+        <a href={`/person/${person.id}`} className={castClass}>
             {
                 (person.photo === null) ? 
                 (<div class="default-photo">
@@ -28,5 +32,6 @@ Cast.defaultProps = {
         name: '',
         character: '',
     },
-    inGallery: true
+    inGallery: true,
+    asCast: false
 }

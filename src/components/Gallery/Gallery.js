@@ -16,7 +16,7 @@ function Gallery({movies, cast}){
             }
             {
                 cast.map((person, i) => (
-                    <Cast key={person.id} person={person}/>
+                    <Cast key={person.id} person={person} asCast={"character" in person}/>
                 ))
             }
             <span class="pad"/>
