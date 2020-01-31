@@ -27,7 +27,7 @@ export default class Movie extends Component {
             release: '',
             rate: 0,
             vote: '',
-            genres: null,
+            genres: [],
             overview: '',
             director: '',
             duration: '',
@@ -88,8 +88,8 @@ export default class Movie extends Component {
 
     // TODO: handle empty genres
     renderGenres(genres){
-        if(genres === null){
-            return;
+        if(genres.length === 0){
+            return '?';
         }
         if(genres.length < 2){
             return <Link to={`/movie?genre=${genres[0].id}`} className="link">{genres[0].name}</Link>

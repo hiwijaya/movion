@@ -73,6 +73,9 @@
     .cast-grid {
         width: 25%;
     }
+    .as-cast {
+        width: 160px
+    }
 }
 @media only screen and (max-width: 640px) {
     .cast-grid {
@@ -82,5 +85,8 @@
 @media only screen and (max-width: 480px) {
     .cast {
         width: 180px;
+    }
+    .as-cast {
+        width: 150px
     }
 }
