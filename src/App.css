@@ -187,6 +187,15 @@
 
 
 /* /person */
+.m-profile {
+	display: none;
+}
+.m-profile .overview .photo {
+	float: left;
+	width: 200px;
+	margin-right: 15px;
+	flex-shrink: 0;
+}
 .profile {
 	display: flex;
 	flex-direction: row;
@@ -196,28 +205,27 @@
 	width: 320px;
 	flex-shrink: 0;				/* prevent div shrinking inside flexbox (even has set width) */
 }
-.profile .photo img {
+.profile .photo img, .m-profile .overview .photo img {
 	width: 100%;
 }
 .profile .overview {
-	margin: 0 50px;
+	margin-left: 50px;
 }
-.profile .overview h2 {
+.profile .overview h2, .m-profile .overview h2  {
 	margin-bottom: 20px;
 }
-.profile .overview p {
+.profile .overview p, .m-profile .overview p {
 	white-space: pre-line;		/* related with \n */
-	margin-bottom: 50px;
 }
-.profile .overview ul {
+.profile .overview ul, .m-profile ul {
 	margin: 40px 0;
 }
-.profile .overview li {
+.profile .overview li, .m-profile li {
 	display: flex;
 	flex-direction: row;
 	margin-bottom: 20px;
 }
-.profile .overview li span {
+.profile .overview li span, .m-profile li span {
 	width: 150px;
 }
 .movies, .persons, .results {
@@ -237,8 +245,10 @@
 }
 .timeline li .year {
 	width: 100px;
+	flex-shrink: 0;
 }
-.timeline li .character {
+.timeline li .role span {
+	flex: 1;
 	color: #80868B;
 }
 /* /person */
@@ -310,8 +320,9 @@
 /* responsive */
 @media only screen and (max-width: 1500px) {
 
-	.movie-info .poster, .movie-info .default-image {
-		width: 300px;
+	.movie-info .poster, .movie-info .default-image, 
+	.profile .photo {
+		width: 280px;
 	}
 
 
@@ -336,7 +347,7 @@
 	.tab div {
 		font-size: 1.0em;
 	}
-	.movie-info {
+	.movie-info, .profile .overview {
 		margin: 0px 30px; 
 	}
 	.movie-info .poster, .movie-info .default-image {
@@ -348,14 +359,32 @@
 	.movie-info .detail .title {
 		margin-bottom: 10px;
 	}
-	.movie-info .detail ul {
+	.movie-info .detail ul, .m-profile ul {
 		margin: 30px 0;
 	}
-	.movie-info .detail li {
+	.movie-info .detail li, .m-profile li {
 		margin-bottom: 15px;
 	}
-	.movie-info .detail li span {
-		width: 110px;
+	.movie-info .detail li span, .m-profile li span {
+		width: 120px;
+	}
+
+	/* /person */
+	.m-profile {
+		display: block;
+		margin: 30px;
+	}
+	.profile {
+		display: none;
+	}
+	.timeline {
+		margin: 0 30px;
+	}
+
+
+	.movies, .persons, .results {
+		margin: 0 30px;
+		margin-bottom: 50px;
 	}
 
 
@@ -392,11 +421,28 @@
 	.movie-info {
 		margin: 0px 20px; 
 	}
-	.movie-info .poster, .movie-info .default-image {
+	.movie-info .poster, .movie-info .default-image,
+	.profile .photo, .profile .default-image {
 		display: none;
 	}
 	.movie-info .detail {
 		margin-left: 0;
+	}
+
+	/* /person */
+	.m-profile {
+		margin: 20px;
+	}
+	.timeline {
+		margin: 0 20px;
+	}
+	.timeline li .year {
+		width: 70px;
+	}
+
+
+	.movies, .persons, .results {
+		margin: 0 20px;
 	}
 
 

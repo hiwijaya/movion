@@ -95,4 +95,7 @@
     .explore {
         height: 270px;
     }
+    .poster-grid {
+		width: 50%;
+	}
 }

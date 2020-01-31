@@ -109,8 +109,7 @@ export default class Person extends Component {
                         <li key={cast.id}>
                             <a href={`/movie/${cast.id}`} class="chorizontal">
                                 <div class="year">{cast.releaseYear || '-'}</div>
-                                <div>{cast.title}</div>
-                                <div class="character">&nbsp;{`as ${cast.role}`}</div>
+                                <h5 class="role">{cast.title} <span>&nbsp;{`as ${cast.role}`}</span></h5>
                             </a>
                         </li>
                     ))
@@ -156,6 +155,25 @@ export default class Person extends Component {
                             </ul>
                             <Social ids={this.state.social}/>
                         </div>
+                    </div>
+
+                    <div class="m-profile">
+
+                        <div class="overview">
+                            <h2>{this.state.name}</h2>
+                            <p>
+                                {this.renderPhoto(this.state.photo)}
+                                {this.state.biography}
+                            </p>
+                        </div>
+
+                        <ul>
+                            <li><span>Known For</span>{this.state.knownFor}</li>
+                            <li><span>Born</span>{this.state.birthday}</li>
+                            <li><span>Place of Birth</span>{this.state.placeBirth}</li>
+                        </ul>
+                        <Social ids={this.state.social}/>
+
                     </div>
 
                     {this.renderTab(this.state.selectedTab)}
