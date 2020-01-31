@@ -127,7 +127,7 @@ export default class Movie extends Component {
                     {this.renderPoster(this.state.poster)}
 
                     <div class="detail">
-                        <div class="title">{this.state.title}</div>
+                        <div class="title">Storyline</div>
                         <p>{this.state.overview}</p>
                         <ul>
                             <li><span>Director</span><Link to={`/person/${this.state.director.id}`} className="link">{this.state.director.name}</Link></li>
