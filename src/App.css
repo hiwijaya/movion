@@ -265,7 +265,7 @@
 	color: #80868b;
 }
 .credits a {
-	font-weight: 700;
+	font-weight: 500;
 	color: #80868b;
 }
 .credits p {
@@ -281,10 +281,6 @@
 	height: 100px;
 	margin-bottom: 20px;
 }
-.credits ul {
-	margin: 50px 0;
-}
-
 
 
 /* scroll */
@@ -381,6 +377,10 @@
 		margin: 0 30px;
 	}
 
+	.credits {
+		margin: 30px;
+	}
+
 
 	.movies, .persons, .results {
 		margin: 0 30px;
@@ -444,11 +444,13 @@
 		width: 70px;
 	}
 
+	.credits {
+		margin: 20px;
+	}
 
 	.movies, .persons, .results {
 		margin: 0 20px;
 	}
-
 
 	.photos .backdrops, .photos .posters {
 		margin: 0 20px;
