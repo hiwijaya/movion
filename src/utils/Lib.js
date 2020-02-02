@@ -379,13 +379,17 @@ function getTopCast(casts) {
 
 function getShortGenre(genres) {
     if (genres === null || genres.length === 0) {
-        return '-';
+        return '';
     }
     if (genres.length < 2) {
-        return genres[0].name;
+        let genre = (genres[0].name === 'Science Fiction') ? 'Sci-Fi' : genres[0].name;
+        return genre;
     }
 
-    return `${genres[0].name}/${genres[1].name}`;
+    let genre1 = (genres[0].name === 'Science Fiction') ? 'Sci-Fi' : genres[0].name;
+    let genre2 = (genres[1].name === 'Science Fiction') ? 'Sci-Fi' : genres[1].name;
+    
+    return `${genre1}/${genre2}`;
 }
 
 export function getShortOverview(overview){
