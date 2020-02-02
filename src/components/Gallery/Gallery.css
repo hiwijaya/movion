@@ -33,7 +33,7 @@
 
 @media only screen and (max-width: 640px) {
     .gallery {
-        scroll-padding: 30px;
+        scroll-padding: 20px;
     }
     .gallery .pad {
         width: 20px;

@@ -433,6 +433,10 @@
 	.m-profile {
 		margin: 20px;
 	}
+	.m-profile .overview .photo {
+		width: 40%;
+		max-width: 200px;
+	}
 	.timeline {
 		margin: 0 20px;
 	}
