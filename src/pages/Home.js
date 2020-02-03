@@ -54,14 +54,19 @@ export default class Home extends Component {
 
                     <div class="title-section">
                         <h3>Trending Movies </h3>
+                        <a href="/movie">
+                            <span class="link">more</span>
+                        </a>
                     </div>
                     <Gallery movies={this.state.trendingMovies}/>
 
                     <div class="title-section">
                         <h3>Trending Person </h3>
+                        <a href="/person">
+                            <span class="link">more</span>
+                        </a>
                     </div>
                     <Gallery cast={this.state.trendingPerson}/>
-
 
                     <Footer/>
                 </div>
