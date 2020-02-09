@@ -55,7 +55,8 @@ export default class Headline extends Component {
             <div class="headline">
                 <span/>
                 <div class="backdrop center" style={(this.state.windowWidth < 1024) ? backgroundResponsive : background}>
-                    <img src={playCircle} class="trailer-play" alt="play trailer"/>
+                    <img src={playCircle} class="trailer-play" alt="play trailer" role="button"
+                        onClick={() => this.props.onTrailerPress()}/>
                 </div>
 
                 <div class="desc">
