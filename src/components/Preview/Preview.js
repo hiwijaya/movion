@@ -47,7 +47,7 @@ export default class Preview extends Component {
             return <h3>Content not available.</h3>;
         }
         else if(item.startsWith('https://www.youtube.com/')){
-            return <iframe id="youtubeiframe" width="100%" height="100%" src={item} 
+            return <iframe id="youtubeiframe" width="100%" src={item} title="Trailer"
                         allowfullscreen="allowfullscreen" ref={(element) => {this.previewItem = element}}
                         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"/>
         }
