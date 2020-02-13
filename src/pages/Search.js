@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Menubar from '../components/Menubar';
 import Poster from '../components/Poster/';
 import Cast from '../components/Cast';
@@ -113,9 +113,28 @@ export default class Search extends Component {
         }
     }
 
-    renderLoading(loading){
-        if(loading){
-            return <div class="loading">Loading...</div>
+    renderResults(results){
+        if(results.length === 0){
+            return <div class="message">No result.</div>
+        }
+        else{
+            return(
+                <Fragment>
+                    <div class="results">
+                        {
+                            results.map((result, i) => {
+                                if(result.mediaType === 'movie'){
+                                    return <Poster key={result.id} movie={result} inGallery={false}/>
+                                }
+                                else{
+                                    return <Cast key={result.id} person={result} inGallery={false}/>
+                                }
+                            })
+                        }
+                    </div>
+                    {this.state.loading&&<div class="loading">Loading...</div>}
+                </Fragment>
+            )
         }
     }
 
@@ -131,19 +150,7 @@ export default class Search extends Component {
                         <h3> {desc} </h3>
                     </div>
 
-                    <div class="results">
-                        {
-                            this.state.results.map((result, i) => {
-                                if(result.mediaType === 'movie'){
-                                    return <Poster movie={result} inGallery={false}/>
-                                }
-                                else{
-                                    return <Cast person={result} inGallery={false}/>
-                                }
-                            })
-                        }
-                    </div>
-                    {this.renderLoading(this.state.loading)}
+                    {this.renderResults(this.state.results)}
                     
                     <Footer/>
                 </div>
