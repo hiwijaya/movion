@@ -7,7 +7,7 @@ export default function Footer() {
     return(
         <div class="footer">
             <p>© 2020 Happy Indra Wijaya. All rights reserved. <a href="/credits">Credits</a>. </p>
-            <p>Powered by <a class="tmdb" href="https://www.themoviedb.org/" target="_blank">TMDb</a></p>
+            <p>Powered by <a class="tmdb" href="https://www.themoviedb.org/" target="_blank" rel="noopener noreferrer">TMDb</a></p>
         </div>
     );
 }
