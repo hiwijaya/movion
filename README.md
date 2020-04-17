@@ -10,14 +10,14 @@ Your daily dose of movie updates.
 
 ### Build with
 
-<a href="https://reactjs.org//" rel="ReactJS">
+<a href="https://reactjs.org/" rel="ReactJS">
   <img src="docs/reactjs.png" alt="reactJS" width="200"/>
 </a>
 
 ### Data provided by
 
 <a href="https://www.themoviedb.org" rel="TMDb">
-  <img src="docs/tmdb.png" alt="TMDb" width="100"/>
+  <img src="docs/tmdb.svg" alt="TMDb" width="100"/>
 </a>
 
 ### License
