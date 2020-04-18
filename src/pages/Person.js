@@ -8,6 +8,8 @@ import image from '../images/icon/image.svg';
 import MovieService from '../services/MovieService';
 import * as Lib from '../utils/Lib.js';
 
+import { Helmet } from 'react-helmet';
+
 
 export default class Person extends Component {
 
@@ -138,6 +140,16 @@ export default class Person extends Component {
     render() {
         return (
             <div>
+                <Helmet>
+                    <title>{`Movion - ${this.state.name}`}</title>
+                    <meta name="og:title" content={this.state.name}/>
+                    <meta name="og:description" content={this.state.biography}/>
+                    <meta name="og:image" content={this.state.photo}/>
+                    <meta name="og:type" content="actor"/>
+                    <meta name="og:url" content={`https://hiwijaya.com/person/${this.personId}`}/>
+                    <meta name="og:site_name" content="Movion"/>
+                </Helmet>
+
                 <Menubar/>
                 <Preview ref={(ref) => {this.preview = ref}}/>
                 <div class="content">

@@ -12,6 +12,8 @@ import image from '../images/icon/image.svg';
 import MovieService from '../services/MovieService.js';
 import * as Lib from '../utils/Lib.js';
 
+import { Helmet } from 'react-helmet';
+
 
 export default class Movie extends Component {
 
@@ -226,6 +228,17 @@ export default class Movie extends Component {
     render() {
         return (
             <div>
+                <Helmet>
+                    <title>{`Movion - ${this.state.title}`}</title>
+                    <meta name="og:title" content={this.state.title}/>
+                    <meta name="og:description" content={this.state.overview}/>
+                    <meta name="og:image" content={this.state.poster}/>
+                    <meta name="og:image" content={this.state.backdrops[0]}/>
+                    <meta name="og:type" content="movie"/>
+                    <meta name="og:url" content={`https://hiwijaya.com/movie/${this.movieId}`}/>
+                    <meta name="og:site_name" content="Movion"/>
+                </Helmet>
+
                 <Menubar/>
                 <Preview ref={(ref) => {this.preview = ref}}/>
                 <div class="content">
