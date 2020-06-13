@@ -1,8 +1,8 @@
 ![Moneyman Preview](docs/movion.png)
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/b0075cfe-0d9b-4e18-bbea-1a6cd826f596/deploy-status)](https://app.netlify.com/sites/movion/deploys)
+# Movion
 
-## Movion
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b0075cfe-0d9b-4e18-bbea-1a6cd826f596/deploy-status)](https://app.netlify.com/sites/movion/deploys)
 
 Your daily dose of movie updates.
 
