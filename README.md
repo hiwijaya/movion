@@ -2,7 +2,14 @@
 
 # Movion
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/b0075cfe-0d9b-4e18-bbea-1a6cd826f596/deploy-status)](https://app.netlify.com/sites/movion/deploys)
+<p align="center">
+  
+  [![Netlify Status](https://api.netlify.com/api/v1/badges/b0075cfe-0d9b-4e18-bbea-1a6cd826f596/deploy-status)](https://app.netlify.com/sites/movion/deploys)
+  
+  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/hiwijaya/movion/blob/master/LICENSE)
+
+</p>
+
 
 Your daily dose of movie updates.
 
