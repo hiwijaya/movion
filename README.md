@@ -1,10 +1,12 @@
 ![Moneyman Preview](docs/movion.png)
 
-## Movion
+# Movion
 
 Your daily dose of movie updates.
 
 ### Live
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b0075cfe-0d9b-4e18-bbea-1a6cd826f596/deploy-status)](https://app.netlify.com/sites/movion/deploys)  
 
 [https://movion.hiwijaya.com](https://movion.hiwijaya.com)
 
@@ -40,7 +42,7 @@ To get TMDb_API_KEY you must registered in [TMDb](https://www.themoviedb.org).
 
 ### License
 
-Movion is [MIT Licensed](https://github.com/hiwijaya/movion/blob/master/LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/hiwijaya/movion/blob/master/LICENSE)
 
 Thank you.
 
