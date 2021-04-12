@@ -7,7 +7,8 @@
     color: #80868B;
 }
 .footer .tmdb {
-    color: #01d277;
+    display: inline-block;
+    width: 100px;
 }
 
 @media only screen and (max-width: 1500px) {
